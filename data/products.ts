@@ -33,8 +33,8 @@ export const products: Product[] = [
         rating: "4.7",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/dp/B09G9FPGTN",
-        affiliateUrl: "https://www.amazon.es/dp/B09G9FPGTN?tag=comparaweb08-21"
+        url: "https://www.amazon.es/s?k=iPhone+13+128GB+Medianoche",
+        affiliateUrl: "https://www.amazon.es/s?k=iPhone+13+128GB+Medianoche&tag=comparaweb08-21"
       },
       {
         id: "iphone13-pccomponentes",
@@ -44,7 +44,7 @@ export const products: Product[] = [
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/apple-iphone-13-128gb-medianoche-libre",
+        url: "https://www.pccomponentes.com/buscar/?query=iphone+13+128gb",
         affiliateUrl: null
       },
       {
@@ -55,7 +55,7 @@ export const products: Product[] = [
         rating: "4.5",
         condition: "Nuevo",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/product/_apple-iphone-13-128-gb-medianoche-1518175.html",
+        url: "https://www.mediamarkt.es/es/search.html?query=iphone%2013%20128gb",
         affiliateUrl: null
       }
     ]
@@ -74,8 +74,8 @@ export const products: Product[] = [
         rating: "4.8",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/dp/B0B3C9B82J",
-        affiliateUrl: "https://www.amazon.es/dp/B0B3C9B82J?tag=comparaweb08-21"
+        url: "https://www.amazon.es/s?k=MacBook+Air+M2+256GB",
+        affiliateUrl: "https://www.amazon.es/s?k=MacBook+Air+M2+256GB&tag=comparaweb08-21"
       },
       {
         id: "macbookm2-pccomponentes",
@@ -85,7 +85,7 @@ export const products: Product[] = [
         rating: "4.7",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/apple-macbook-air-apple-m2-8gb-256gb-ssd-136-gris-espacial",
+        url: "https://www.pccomponentes.com/buscar/?query=macbook+air+m2",
         affiliateUrl: null
       },
       {
@@ -96,7 +96,7 @@ export const products: Product[] = [
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/product/_portatil-apple-macbook-air-m2-256-gb-1532890.html",
+        url: "https://www.mediamarkt.es/es/search.html?query=macbook%20air%20m2",
         affiliateUrl: null
       }
     ]
@@ -115,8 +115,8 @@ export const products: Product[] = [
         rating: "4.9",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/dp/B0CLT539VP",
-        affiliateUrl: "https://www.amazon.es/dp/B0CLT539VP?tag=comparaweb08-21"
+        url: "https://www.amazon.es/s?k=PlayStation+5+Slim",
+        affiliateUrl: "https://www.amazon.es/s?k=PlayStation+5+Slim&tag=comparaweb08-21"
       },
       {
         id: "ps5slim-pccomponentes",
@@ -126,7 +126,7 @@ export const products: Product[] = [
         rating: "4.8",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/sony-playstation-5-slim",
+        url: "https://www.pccomponentes.com/buscar/?query=ps5+slim",
         affiliateUrl: null
       },
       {
@@ -137,7 +137,7 @@ export const products: Product[] = [
         rating: "4.7",
         condition: "Nuevo",
         lastUpdated: "Hace 2 días",
-        url: "https://www.mediamarkt.es/es/product/_consola-sony-ps5-slim-1565431.html",
+        url: "https://www.mediamarkt.es/es/search.html?query=ps5%20slim",
         affiliateUrl: null
       }
     ]
@@ -156,8 +156,8 @@ export const products: Product[] = [
         rating: "4.8",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/dp/B098RJXBTY",
-        affiliateUrl: "https://www.amazon.es/dp/B098RJXBTY?tag=comparaweb08-21"
+        url: "https://www.amazon.es/s?k=Nintendo+Switch+OLED+Blanca",
+        affiliateUrl: "https://www.amazon.es/s?k=Nintendo+Switch+OLED+Blanca&tag=comparaweb08-21"
       },
       {
         id: "switcholed-pccomponentes",
@@ -167,7 +167,7 @@ export const products: Product[] = [
         rating: "4.7",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/nintendo-switch-oled-blanca",
+        url: "https://www.pccomponentes.com/buscar/?query=nintendo+switch+oled",
         affiliateUrl: null
       },
       {
@@ -178,7 +178,7 @@ export const products: Product[] = [
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/product/_consola-nintendo-switch-oled-1514781.html",
+        url: "https://www.mediamarkt.es/es/search.html?query=nintendo%20switch%20oled",
         affiliateUrl: null
       }
     ]
@@ -197,8 +197,8 @@ export const products: Product[] = [
         rating: "4.7",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/dp/B0CHWRXH8B",
-        affiliateUrl: "https://www.amazon.es/dp/B0CHWRXH8B?tag=comparaweb08-21"
+        url: "https://www.amazon.es/s?k=AirPods+Pro+2+USB-C",
+        affiliateUrl: "https://www.amazon.es/s?k=AirPods+Pro+2+USB-C&tag=comparaweb08-21"
       },
       {
         id: "airpodspro2-pccomponentes",
@@ -208,7 +208,7 @@ export const products: Product[] = [
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/apple-airpods-pro-2-generacion-estuche-de-carga-magsafe-usb-c",
+        url: "https://www.pccomponentes.com/buscar/?query=airpods+pro+2",
         affiliateUrl: null
       },
       {
@@ -219,7 +219,7 @@ export const products: Product[] = [
         rating: "4.5",
         condition: "Nuevo",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/product/_auriculares-in-ear-apple-airpods-pro-2-gen-1560938.html",
+        url: "https://www.mediamarkt.es/es/search.html?query=airpods%20pro%202",
         affiliateUrl: null
       }
     ]
@@ -238,8 +238,8 @@ export const products: Product[] = [
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/dp/B0CQ2W51R7",
-        affiliateUrl: "https://www.amazon.es/dp/B0CQ2W51R7?tag=comparaweb08-21"
+        url: "https://www.amazon.es/s?k=Samsung+Galaxy+S24+128GB",
+        affiliateUrl: "https://www.amazon.es/s?k=Samsung+Galaxy+S24+128GB&tag=comparaweb08-21"
       },
       {
         id: "s24-pccomponentes",
@@ -249,7 +249,7 @@ export const products: Product[] = [
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/samsung-galaxy-s24-8-128gb-negro-onyx-libre",
+        url: "https://www.pccomponentes.com/buscar/?query=samsung+galaxy+s24",
         affiliateUrl: null
       },
       {
@@ -260,7 +260,7 @@ export const products: Product[] = [
         rating: "4.5",
         condition: "Nuevo",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/product/_smartphone-samsung-galaxy-s24-1568200.html",
+        url: "https://www.mediamarkt.es/es/search.html?query=samsung%20galaxy%20s24",
         affiliateUrl: null
       }
     ]
