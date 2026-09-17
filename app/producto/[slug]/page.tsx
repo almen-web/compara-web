@@ -30,6 +30,13 @@ function createSlug(name: string) {
     .replace(/\s+/g, "-");
 }
 
+// Genera las rutas estáticas durante el build para que Netlify las sirva directamente
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    slug: createSlug(product.name),
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -79,9 +86,7 @@ async function getProductDirectly(slug: string): Promise<ProductResponse | null>
     return null;
   }
 
-  const sortedOffers = [...product.offers].sort(
-    (a, b) => a.price - b.price
-  );
+  const sortedOffers = [...product.offers].sort((a, b) => a.price - b.price);
 
   return {
     product: {
