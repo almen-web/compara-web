@@ -1,20 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { products } from "@/data/products";
-
-type Offer = {
-  id: string;
-  store: string;
-  price: number;
-  shipping: string;
-  shippingCost: number;
-  totalPrice: number;
-  rating: string;
-  condition: string;
-  url: string;
-  affiliateUrl: string | null;
-  lastUpdated: string;
-};
+import { products, type Offer } from "@/data/products";
 
 type ProductResponse = {
   product: {
@@ -52,24 +38,17 @@ export async function generateMetadata({
   const { slug } = await params;
 
   const product = products.find(
-    (item) =>
-      createSlug(item.name) ===
-      slug.toLowerCase()
+    (item) => createSlug(item.name) === slug.toLowerCase()
   );
 
   if (!product) {
     return {
       title: "Producto no encontrado",
-      description:
-        "El producto que buscas no está disponible en ComparaWeb.",
+      description: "El producto que buscas no está disponible en ComparaWeb.",
     };
   }
 
-  const cheapestPrice = Math.min(
-    ...product.offers.map(
-      (offer) => offer.price
-    )
-  );
+  const cheapestPrice = Math.min(...product.offers.map((offer) => offer.price));
 
   return {
     title: `${product.name}: compara precios y ofertas`,
@@ -91,27 +70,30 @@ export async function generateMetadata({
   };
 }
 
-async function getProduct(
-  slug: string
-): Promise<ProductResponse | null> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    "http://localhost:3000";
-
-  const response = await fetch(
-    `${baseUrl}/api/product/${encodeURIComponent(
-      slug
-    )}`,
-    {
-      cache: "no-store",
-    }
+async function getProductDirectly(slug: string): Promise<ProductResponse | null> {
+  const product = products.find(
+    (item) => createSlug(item.name) === slug.toLowerCase()
   );
 
-  if (!response.ok) {
+  if (!product) {
     return null;
   }
 
-  return response.json();
+  const sortedOffers = [...product.offers].sort(
+    (a, b) => a.price - b.price
+  );
+
+  return {
+    product: {
+      name: product.name,
+      category: product.category,
+      rating: product.rating,
+      image: product.image,
+    },
+    offers: sortedOffers,
+    totalOffers: sortedOffers.length,
+    cheapestOffer: sortedOffers[0] || null,
+  };
 }
 
 export default async function ProductPage({
@@ -121,36 +103,25 @@ export default async function ProductPage({
 }) {
   const { slug } = await params;
 
-  const data = await getProduct(slug);
+  const data = await getProductDirectly(slug);
 
   if (!data) {
     return (
       <main className="min-h-screen bg-slate-50 text-slate-900">
         <header className="border-b bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4">
-            <Link
-              href="/"
-              className="text-2xl font-bold"
-            >
-              Compara
-              <span className="text-blue-600">
-                Web
-              </span>
+            <Link href="/" className="text-2xl font-bold">
+              Compara<span className="text-blue-600">Web</span>
             </Link>
           </div>
         </header>
 
         <section className="mx-auto max-w-3xl px-6 py-24 text-center">
           <div className="text-6xl">🔎</div>
-
-          <h1 className="mt-6 text-3xl font-bold">
-            Producto no encontrado
-          </h1>
-
+          <h1 className="mt-6 text-3xl font-bold">Producto no encontrado</h1>
           <p className="mt-3 text-slate-600">
             No hemos encontrado este producto.
           </p>
-
           <Link
             href="/"
             className="mt-8 inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
@@ -162,39 +133,20 @@ export default async function ProductPage({
     );
   }
 
-  const { product, offers, cheapestOffer } =
-    data;
+  const { product, offers, cheapestOffer } = data;
 
-  const historyPrices = priceHistory.map(
-    (item) => item.price
-  );
-
-  const minimumPrice = Math.min(
-    ...historyPrices
-  );
-
-  const maximumPrice = Math.max(
-    ...historyPrices
-  );
-
-  const currentPrice =
-    cheapestOffer?.totalPrice || 0;
-
-  const maximumSaving =
-    maximumPrice - currentPrice;
+  const historyPrices = priceHistory.map((item) => item.price);
+  const minimumPrice = Math.min(...historyPrices);
+  const maximumPrice = Math.max(...historyPrices);
+  const currentPrice = cheapestOffer?.price || 0;
+  const maximumSaving = maximumPrice - currentPrice;
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="text-2xl font-bold"
-          >
-            Compara
-            <span className="text-blue-600">
-              Web
-            </span>
+          <Link href="/" className="text-2xl font-bold">
+            Compara<span className="text-blue-600">Web</span>
           </Link>
 
           <Link
@@ -218,9 +170,7 @@ export default async function ProductPage({
                 {product.category}
               </p>
 
-              <h1 className="mt-2 text-4xl font-bold">
-                {product.name}
-              </h1>
+              <h1 className="mt-2 text-4xl font-bold">{product.name}</h1>
 
               <div className="mt-4 flex flex-wrap gap-3">
                 <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
@@ -233,30 +183,19 @@ export default async function ProductPage({
               </div>
 
               <p className="mt-6 text-slate-600">
-                Compara las mejores ofertas y
-                encuentra el precio final más bajo.
+                Compara las mejores ofertas y encuentra el precio final más bajo.
               </p>
 
               <div className="mt-8">
-                <p className="text-sm text-slate-500">
-                  Mejor precio actual
-                </p>
+                <p className="text-sm text-slate-500">Mejor precio actual</p>
 
                 <p className="text-4xl font-bold text-blue-600">
-                  {currentPrice
-                    .toFixed(2)
-                    .replace(".", ",")}{" "}
-                  €
+                  {currentPrice.toFixed(2).replace(".", ",")} €
                 </p>
 
                 {maximumSaving > 0 && (
                   <p className="mt-2 text-sm font-semibold text-green-600">
-                    🔻{" "}
-                    {maximumSaving
-                      .toFixed(2)
-                      .replace(".", ",")}{" "}
-                    € por debajo del máximo
-                    histórico
+                    🔻 {maximumSaving.toFixed(2).replace(".", ",")} € por debajo del máximo histórico
                   </p>
                 )}
               </div>
@@ -267,23 +206,15 @@ export default async function ProductPage({
         <section className="mt-10 rounded-2xl border bg-white p-6 shadow-sm md:p-8">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
             <div>
-              <h2 className="text-2xl font-bold">
-                📈 Historial de precios
-              </h2>
-
+              <h2 className="text-2xl font-bold">📈 Historial de precios</h2>
               <p className="mt-2 text-sm text-slate-500">
                 Datos de demostración del prototipo.
               </p>
             </div>
 
             <div className="rounded-xl bg-blue-50 px-4 py-3 text-sm">
-              <span className="font-semibold">
-                Precio actual:
-              </span>{" "}
-              {currentPrice
-                .toFixed(2)
-                .replace(".", ",")}{" "}
-              €
+              <span className="font-semibold">Precio actual:</span>{" "}
+              {currentPrice.toFixed(2).replace(".", ",")} €
             </div>
           </div>
 
@@ -292,8 +223,7 @@ export default async function ProductPage({
               {priceHistory.map((item) => {
                 const percentage =
                   ((item.price - minimumPrice) /
-                    (maximumPrice -
-                      minimumPrice)) *
+                    (maximumPrice - minimumPrice)) *
                     60 +
                   25;
 
@@ -308,9 +238,7 @@ export default async function ProductPage({
 
                     <div
                       className="w-full max-w-12 rounded-t-xl bg-blue-500"
-                      style={{
-                        height: `${percentage}%`,
-                      }}
+                      style={{ height: `${percentage}%` }}
                     />
 
                     <div className="mt-3 text-xs font-semibold text-slate-500">
@@ -324,33 +252,21 @@ export default async function ProductPage({
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <div className="rounded-xl bg-green-50 p-4">
-              <p className="text-sm text-slate-500">
-                Precio mínimo
-              </p>
-
+              <p className="text-sm text-slate-500">Precio mínimo</p>
               <p className="mt-1 text-2xl font-bold text-green-600">
                 {minimumPrice} €
               </p>
             </div>
 
             <div className="rounded-xl bg-blue-50 p-4">
-              <p className="text-sm text-slate-500">
-                Precio actual
-              </p>
-
+              <p className="text-sm text-slate-500">Precio actual</p>
               <p className="mt-1 text-2xl font-bold text-blue-600">
-                {currentPrice
-                  .toFixed(2)
-                  .replace(".", ",")}{" "}
-                €
+                {currentPrice.toFixed(2).replace(".", ",")} €
               </p>
             </div>
 
             <div className="rounded-xl bg-red-50 p-4">
-              <p className="text-sm text-slate-500">
-                Precio máximo
-              </p>
-
+              <p className="text-sm text-slate-500">Precio máximo</p>
               <p className="mt-1 text-2xl font-bold text-red-600">
                 {maximumPrice} €
               </p>
@@ -361,13 +277,10 @@ export default async function ProductPage({
         <section className="mt-10">
           <div>
             <h2 className="text-2xl font-bold">
-              Comparar precios de{" "}
-              {product.name}
+              Comparar precios de {product.name}
             </h2>
-
             <p className="mt-2 text-slate-600">
-              {offers.length} ofertas ordenadas por
-              precio final.
+              {offers.length} ofertas ordenadas por precio final.
             </p>
           </div>
 
@@ -380,10 +293,7 @@ export default async function ProductPage({
                 <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-xl font-bold">
-                        {offer.store}
-                      </h3>
-
+                      <h3 className="text-xl font-bold">{offer.store}</h3>
                       {index === 0 && (
                         <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-bold text-green-700">
                           🏆 MEJOR PRECIO
@@ -392,8 +302,7 @@ export default async function ProductPage({
                     </div>
 
                     <p className="mt-2 text-sm text-slate-500">
-                      ⭐ {offer.rating}/5 ·{" "}
-                      {offer.condition}
+                      ⭐ {offer.rating}/5 · {offer.condition}
                     </p>
 
                     <p className="mt-1 text-sm text-slate-500">
@@ -401,22 +310,15 @@ export default async function ProductPage({
                     </p>
 
                     <p className="mt-1 text-xs text-slate-400">
-                      Actualizado:{" "}
-                      {offer.lastUpdated}
+                      Actualizado: {offer.lastUpdated}
                     </p>
                   </div>
 
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                     <div className="text-right">
-                      <p className="text-sm text-slate-500">
-                        Precio final
-                      </p>
-
+                      <p className="text-sm text-slate-500">Precio final</p>
                       <p className="text-3xl font-bold">
-                        {offer.totalPrice
-                          .toFixed(2)
-                          .replace(".", ",")}{" "}
-                        €
+                        {offer.price.toFixed(2).replace(".", ",")} €
                       </p>
                     </div>
 
@@ -434,13 +336,9 @@ export default async function ProductPage({
         </section>
 
         <section className="mt-10 rounded-2xl border border-blue-100 bg-blue-50 p-6">
-          <h2 className="text-xl font-bold">
-            🔔 Alertas de precio
-          </h2>
-
+          <h2 className="text-xl font-bold">🔔 Alertas de precio</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Próximamente podrás recibir una alerta
-            cuando el precio de este producto baje.
+            Próximamente podrás recibir una alerta cuando el precio de este producto baje.
           </p>
 
           <button
@@ -452,15 +350,9 @@ export default async function ProductPage({
         </section>
 
         <section className="mt-6 rounded-2xl border bg-white p-6">
-          <h2 className="text-xl font-bold">
-            ℹ️ Información
-          </h2>
-
+          <h2 className="text-xl font-bold">ℹ️ Información</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Los precios y el historial mostrados
-            actualmente son datos de prueba. Más
-            adelante conectaremos fuentes autorizadas
-            para mostrar ofertas reales y actualizadas.
+            Los precios y el historial mostrados actualmente son datos de prueba. Más adelante conectaremos fuentes autorizadas para mostrar ofertas reales y actualizadas.
           </p>
         </section>
       </section>
