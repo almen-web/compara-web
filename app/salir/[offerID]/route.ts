@@ -1,57 +1,28 @@
-import { getOfferById } from "@/lib/offers";
 import { NextResponse } from "next/server";
+import { products } from "@/data/products";
 
 export async function GET(
-  request: Request
+  request: Request,
+  { params }: { params: Promise<{ offerID: string }> }
 ) {
-  const url = new URL(request.url);
+  const { offerID } = await params;
 
-  const parts = url.pathname
-    .split("/")
-    .filter(Boolean);
+  // Buscar la oferta por su ID dentro de todos los productos
+  let targetUrl: string | null = null;
 
-  const offerId =
-    parts[parts.length - 1];
-
-  const offer =
-    getOfferById(offerId);
-
-  if (!offer) {
-    return NextResponse.json(
-      {
-        error: "Oferta no encontrada",
-        offerIdRecibido:
-          offerId,
-      },
-      {
-        status: 404,
-      }
-    );
+  for (const product of products) {
+    const offer = product.offers.find((o) => o.id === offerID);
+    if (offer) {
+      targetUrl = offer.affiliateUrl || offer.url;
+      break;
+    }
   }
 
-  const destination =
-    offer.affiliateUrl ||
-    offer.url;
+  // Si no se encuentra la oferta o la URL, redirigir al inicio
+  if (!targetUrl) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
-  console.log(
-    "🛒 Clic de compra:",
-    {
-      offerId: offer.id,
-      store: offer.store,
-      product:
-        offer.productName,
-      price: offer.price,
-      totalPrice:
-        offer.totalPrice,
-      destination,
-      sourceType:
-        offer.sourceType,
-      date:
-        new Date().toISOString(),
-    }
-  );
-
-  return NextResponse.redirect(
-    destination
-  );
+  // Redirigir directamente al enlace de la tienda / afiliado
+  return NextResponse.redirect(targetUrl);
 }
