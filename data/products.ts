@@ -20,247 +20,378 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    name: "Apple iPhone 13 (128 GB) - Medianoche",
+    name: "Apple iPhone 13 128GB (Reacondicionado)",
     category: "Smartphones",
-    rating: "4.7",
+    rating: "4.3",
     image: "📱",
     offers: [
       {
-        id: "iphone13-amazon",
+        id: "iphone13-reacondicionado-amazon",
         store: "Amazon",
-        price: 549.00,
+        price: 389.00,
         shipping: "Envío gratis",
-        rating: "4.7",
-        condition: "Nuevo",
+        rating: "4.3",
+        condition: "Reacondicionado",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/gp/search?keywords=Apple+iPhone+13+128GB+Medianoche",
-        affiliateUrl: "https://www.amazon.es/gp/search?keywords=Apple+iPhone+13+128GB+Medianoche&tag=comparaweb08-21"
+        url: "https://amzn.eu/d/06evwbNH",
+        affiliateUrl: "https://amzn.eu/d/06evwbNH?tag=comparaweb08-21"
       },
       {
-        id: "iphone13-pccomponentes",
+        id: "iphone13-reacondicionado-pccomponentes",
         store: "PcComponentes",
-        price: 559.00,
+        price: 399.00,
         shipping: "Envío gratis",
-        rating: "4.6",
-        condition: "Nuevo",
+        rating: "4.4",
+        condition: "Reacondicionado",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/buscar/?query=apple+iphone+13+128gb+medianoche",
+        url: "https://www.pccomponentes.com/apple-iphone-13-128gb-medianoche-libre?refurbished",
         affiliateUrl: null
       },
       {
-        id: "iphone13-mediamarkt",
+        id: "iphone13-reacondicionado-mediamarkt",
         store: "MediaMarkt",
-        price: 569.00,
-        shipping: "Envío 1,99 €",
-        rating: "4.5",
-        condition: "Nuevo",
+        price: 409.00,
+        shipping: "Envío gratis",
+        rating: "4.2",
+        condition: "Reacondicionado",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/search.html?query=iphone%2013%20128gb%20medianoche",
+        url: "https://www.mediamarkt.es/es/product/_mvil-iphone-13-apple-medianoche-128-gb-61-95771724.html",
         affiliateUrl: null
       }
     ]
   },
   {
-    name: "Apple MacBook Air M2 (8GB RAM, 256GB SSD) - Gris Espacial",
-    category: "Portátiles",
-    rating: "4.8",
-    image: "💻",
+    name: "Apple iPhone 14 128GB (Reacondicionado)",
+    category: "Smartphones",
+    rating: "4.4",
+    image: "📱",
     offers: [
       {
-        id: "macbookm2-amazon",
+        id: "iphone14-reacondicionado-amazon",
         store: "Amazon",
-        price: 1049.00,
+        price: 469.00,
         shipping: "Envío gratis",
-        rating: "4.8",
-        condition: "Nuevo",
+        rating: "4.4",
+        condition: "Reacondicionado",
         lastUpdated: "Hoy",
-        url: "https://www.amazon.es/gp/search?keywords=Apple+MacBook+Air+M2+8GB+256GB+Gris+Espacial",
-        affiliateUrl: "https://www.amazon.es/gp/search?keywords=Apple+MacBook+Air+M2+8GB+256GB+Gris+Espacial&tag=comparaweb08-21"
+        url: "https://amzn.eu/d/0ayW88mc",
+        affiliateUrl: "https://amzn.eu/d/0ayW88mc?tag=comparaweb08-21"
       },
       {
-        id: "macbookm2-pccomponentes",
+        id: "iphone14-reacondicionado-pccomponentes",
         store: "PcComponentes",
-        price: 1069.00,
-        shipping: "Envío gratis",
-        rating: "4.7",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/buscar/?query=macbook+air+m2+256gb",
-        affiliateUrl: null
-      },
-      {
-        id: "macbookm2-mediamarkt",
-        store: "MediaMarkt",
-        price: 1079.00,
-        shipping: "Envío gratis",
-        rating: "4.6",
-        condition: "Nuevo",
-        lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/search.html?query=macbook%20air%20m2%20256gb",
-        affiliateUrl: null
-      }
-    ]
-  },
-  {
-    name: "Sony PlayStation 5 Slim (Chasis D - Edición Estándar con Lector)",
-    category: "Consolas",
-    rating: "4.9",
-    image: "🎮",
-    offers: [
-      {
-        id: "ps5slim-amazon",
-        store: "Amazon",
-        price: 519.00,
-        shipping: "Envío gratis",
-        rating: "4.9",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.amazon.es/gp/search?keywords=Sony+PlayStation+5+Slim+Estandar",
-        affiliateUrl: "https://www.amazon.es/gp/search?keywords=Sony+PlayStation+5+Slim+Estandar&tag=comparaweb08-21"
-      },
-      {
-        id: "ps5slim-pccomponentes",
-        store: "PcComponentes",
-        price: 529.90,
-        shipping: "Envío gratis",
-        rating: "4.8",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/buscar/?query=playstation+5+slim",
-        affiliateUrl: null
-      },
-      {
-        id: "ps5slim-mediamarkt",
-        store: "MediaMarkt",
-        price: 549.00,
-        shipping: "Envío gratis",
-        rating: "4.7",
-        condition: "Nuevo",
-        lastUpdated: "Hace 2 días",
-        url: "https://www.mediamarkt.es/es/search.html?query=ps5%20slim",
-        affiliateUrl: null
-      }
-    ]
-  },
-  {
-    name: "Nintendo Switch OLED - Joy-Con Blanco",
-    category: "Consolas",
-    rating: "4.8",
-    image: "🕹️",
-    offers: [
-      {
-        id: "switcholed-amazon",
-        store: "Amazon",
-        price: 319.00,
-        shipping: "Envío gratis",
-        rating: "4.8",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.amazon.es/gp/search?keywords=Nintendo+Switch+OLED+Joy-Con+Blanco",
-        affiliateUrl: "https://www.amazon.es/gp/search?keywords=Nintendo+Switch+OLED+Joy-Con+Blanco&tag=comparaweb08-21"
-      },
-      {
-        id: "switcholed-pccomponentes",
-        store: "PcComponentes",
-        price: 324.95,
-        shipping: "Envío gratis",
-        rating: "4.7",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/buscar/?query=nintendo+switch+oled+blanca",
-        affiliateUrl: null
-      },
-      {
-        id: "switcholed-mediamarkt",
-        store: "MediaMarkt",
-        price: 339.00,
-        shipping: "Envío 2,99 €",
-        rating: "4.6",
-        condition: "Nuevo",
-        lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/search.html?query=nintendo%20switch%20oled%20blanca",
-        affiliateUrl: null
-      }
-    ]
-  },
-  {
-    name: "Apple AirPods Pro (2.ª Generación) con Estuche MagSafe (USB-C)",
-    category: "Auriculares",
-    rating: "4.7",
-    image: "🎧",
-    offers: [
-      {
-        id: "airpodspro2-amazon",
-        store: "Amazon",
-        price: 239.00,
-        shipping: "Envío gratis",
-        rating: "4.7",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.amazon.es/gp/search?keywords=Apple+AirPods+Pro+2+Generacion+USB-C",
-        affiliateUrl: "https://www.amazon.es/gp/search?keywords=Apple+AirPods+Pro+2+Generacion+USB-C&tag=comparaweb08-21"
-      },
-      {
-        id: "airpodspro2-pccomponentes",
-        store: "PcComponentes",
-        price: 249.00,
-        shipping: "Envío gratis",
-        rating: "4.6",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/buscar/?query=apple+airpods+pro+2+generacion+usb-c",
-        affiliateUrl: null
-      },
-      {
-        id: "airpodspro2-mediamarkt",
-        store: "MediaMarkt",
-        price: 255.00,
+        price: 479.00,
         shipping: "Envío gratis",
         rating: "4.5",
-        condition: "Nuevo",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/apple-iphone-14-128gb-medianoche-libre?refurbished",
+        affiliateUrl: null
+      },
+      {
+        id: "iphone14-reacondicionado-mediamarkt",
+        store: "MediaMarkt",
+        price: 489.00,
+        shipping: "Envío gratis",
+        rating: "4.3",
+        condition: "Reacondicionado",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/search.html?query=airpods%20pro%202%20generacion%20usb-c",
+        url: "https://www.mediamarkt.es/es/product/_reacondicionado-excelente-apple-iphone-14-medianoche-128-gb-5g-61-oled-super-retina-xdr-chip-a15-bionic-ios-1612820.html",
         affiliateUrl: null
       }
     ]
   },
   {
-    name: "Samsung Galaxy S24 (8GB RAM, 128GB) - Onyx Black",
+    name: "Apple iPhone 15 128GB (Nuevo)",
     category: "Smartphones",
     rating: "4.6",
-    image: "📲",
+    image: "📱",
     offers: [
       {
-        id: "s24-amazon",
+        id: "iphone15-nuevo-amazon",
         store: "Amazon",
-        price: 749.00,
-        shipping: "Envío gratis",
-        rating: "4.6",
-        condition: "Nuevo",
-        lastUpdated: "Hoy",
-        url: "https://www.amazon.es/gp/search?keywords=Samsung+Galaxy+S24+8GB+128GB+Onyx+Black",
-        affiliateUrl: "https://www.amazon.es/gp/search?keywords=Samsung+Galaxy+S24+8GB+128GB+Onyx+Black&tag=comparaweb08-21"
-      },
-      {
-        id: "s24-pccomponentes",
-        store: "PcComponentes",
         price: 769.00,
         shipping: "Envío gratis",
         rating: "4.6",
         condition: "Nuevo",
         lastUpdated: "Hoy",
-        url: "https://www.pccomponentes.com/buscar/?query=samsung+galaxy+s24+128gb",
+        url: "https://amzn.eu/d/07RNF4pU",
+        affiliateUrl: "https://amzn.eu/d/07RNF4pU?tag=comparaweb08-21"
+      },
+      {
+        id: "iphone15-nuevo-pccomponentes",
+        store: "PcComponentes",
+        price: 779.00,
+        shipping: "Envío gratis",
+        rating: "4.7",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/apple-iphone-15-128gb-negro-libre",
         affiliateUrl: null
       },
       {
-        id: "s24-mediamarkt",
+        id: "iphone15-nuevo-mediamarkt",
         store: "MediaMarkt",
-        price: 779.00,
+        price: 789.00,
         shipping: "Envío gratis",
         rating: "4.5",
         condition: "Nuevo",
         lastUpdated: "Ayer",
-        url: "https://www.mediamarkt.es/es/search.html?query=samsung%20galaxy%20s24%20128gb",
+        url: "https://www.mediamarkt.es/es/product/_apple-iphone-15-negro-128-gb-5g-61-oled-super-retina-xdr-chip-a16-bionic-ios-1561320.html",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "Apple iPhone 15 128GB (Reacondicionado)",
+    category: "Smartphones",
+    rating: "4.4",
+    image: "📱",
+    offers: [
+      {
+        id: "iphone15-reacondicionado-amazon",
+        store: "Amazon",
+        price: 629.00,
+        shipping: "Envío gratis",
+        rating: "4.4",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/06zo2nit",
+        affiliateUrl: "https://amzn.eu/d/06zo2nit?tag=comparaweb08-21"
+      },
+      {
+        id: "iphone15-reacondicionado-pccomponentes",
+        store: "PcComponentes",
+        price: 639.00,
+        shipping: "Envío gratis",
+        rating: "4.5",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/apple-iphone-15-128gb-negro-libre?refurbished",
+        affiliateUrl: null
+      },
+      {
+        id: "iphone15-reacondicionado-mediamarkt",
+        store: "MediaMarkt",
+        price: 649.00,
+        shipping: "Envío gratis",
+        rating: "4.3",
+        condition: "Reacondicionado",
+        lastUpdated: "Ayer",
+        url: "https://www.mediamarkt.es/es/product/_movil-apple-iphone-15-negro-128-gb-6-gb-ram-61-a16-bionic-3349-mah-126337886.html?promotional_offer",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "Apple iPhone 16 128GB (Nuevo)",
+    category: "Smartphones",
+    rating: "4.7",
+    image: "📱",
+    offers: [
+      {
+        id: "iphone16-nuevo-amazon",
+        store: "Amazon",
+        price: 959.00,
+        shipping: "Envío gratis",
+        rating: "4.7",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/08je6ONP",
+        affiliateUrl: "https://amzn.eu/d/08je6ONP?tag=comparaweb08-21"
+      },
+      {
+        id: "iphone16-nuevo-pccomponentes",
+        store: "PcComponentes",
+        price: 959.00,
+        shipping: "Envío gratis",
+        rating: "4.8",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/apple-iphone-16-128-gb-negro",
+        affiliateUrl: null
+      },
+      {
+        id: "iphone16-nuevo-mediamarkt",
+        store: "MediaMarkt",
+        price: 959.00,
+        shipping: "Envío gratis",
+        rating: "4.6",
+        condition: "Nuevo",
+        lastUpdated: "Ayer",
+        url: "https://www.mediamarkt.es/es/product/_apple-iphone-16-negro-128-gb-5g-61-oled-super-retina-xdr-chip-a18-bionic-ios-1582150.html",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "Apple iPhone 16 128GB (Reacondicionado)",
+    category: "Smartphones",
+    rating: "4.5",
+    image: "📱",
+    offers: [
+      {
+        id: "iphone16-reacondicionado-amazon",
+        store: "Amazon",
+        price: 829.00,
+        shipping: "Envío gratis",
+        rating: "4.5",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/0gwTnd7b",
+        affiliateUrl: "https://amzn.eu/d/0gwTnd7b?tag=comparaweb08-21"
+      },
+      {
+        id: "iphone16-reacondicionado-pccomponentes",
+        store: "PcComponentes",
+        price: 839.00,
+        shipping: "Envío gratis",
+        rating: "4.6",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/apple-iphone-16-128-gb-negro?refurbished",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "Apple iPhone 17 256GB (Nuevo)",
+    category: "Smartphones",
+    rating: "4.8",
+    image: "📱",
+    offers: [
+      {
+        id: "iphone17-nuevo-amazon",
+        store: "Amazon",
+        price: 1099.00,
+        shipping: "Envío gratis",
+        rating: "4.8",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/03oq8tN2",
+        affiliateUrl: "https://amzn.eu/d/03oq8tN2?tag=comparaweb08-21"
+      },
+      {
+        id: "iphone17-nuevo-mediamarkt",
+        store: "MediaMarkt",
+        price: 1099.00,
+        shipping: "Envío gratis",
+        rating: "4.7",
+        condition: "Nuevo",
+        lastUpdated: "Ayer",
+        url: "https://www.mediamarkt.es/es/product/_apple-iphone-17-negro-256-gb-5g-63-oled-super-retina-xdr-chip-a19-ios-1606125.html",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "Apple iPhone 17 256GB (Reacondicionado)",
+    category: "Smartphones",
+    rating: "4.6",
+    image: "📱",
+    offers: [
+      {
+        id: "iphone17-reacondicionado-amazon",
+        store: "Amazon",
+        price: 949.00,
+        shipping: "Envío gratis",
+        rating: "4.6",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/06OYrp1C",
+        affiliateUrl: "https://amzn.eu/d/06OYrp1C?tag=comparaweb08-21"
+      },
+      {
+        id: "iphone17-reacondicionado-pccomponentes",
+        store: "PcComponentes",
+        price: 959.00,
+        shipping: "Envío gratis",
+        rating: "4.7",
+        condition: "Reacondicionado",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/apple-iphone-17-256-gb-negro",
+        affiliateUrl: null
+      },
+      {
+        id: "iphone17-reacondicionado-mediamarkt",
+        store: "MediaMarkt",
+        price: 969.00,
+        shipping: "Envío gratis",
+        rating: "4.5",
+        condition: "Reacondicionado",
+        lastUpdated: "Ayer",
+        url: "https://www.mediamarkt.es/es/product/_apple-iphone-17-negro-256-gb-5g-63-oled-super-retina-xdr-chip-a19-ios-1606125.html?promotional_offer",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "PlayStation 5 Slim Standard Edition",
+    category: "Consolas",
+    rating: "4.9",
+    image: "🎮",
+    offers: [
+      {
+        id: "ps5slim-standard-amazon",
+        store: "Amazon",
+        price: 549.00,
+        shipping: "Envío gratis",
+        rating: "4.9",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/08TMXtfN",
+        affiliateUrl: "https://amzn.eu/d/08TMXtfN?tag=comparaweb08-21"
+      },
+      {
+        id: "ps5slim-standard-mediamarkt",
+        store: "MediaMarkt",
+        price: 549.00,
+        shipping: "Envío gratis",
+        rating: "4.8",
+        condition: "Nuevo",
+        lastUpdated: "Ayer",
+        url: "https://www.mediamarkt.es/es/product/_consola-playstation-5-slim-standard-chasis-d-sony-playstation-5-slim-standard-chasis-d-1-tb-blanco-134579763.html",
+        affiliateUrl: null
+      }
+    ]
+  },
+  {
+    name: "PlayStation 5 Slim Digital Edition",
+    category: "Consolas",
+    rating: "4.8",
+    image: "🎮",
+    offers: [
+      {
+        id: "ps5slim-digital-amazon",
+        store: "Amazon",
+        price: 449.00,
+        shipping: "Envío gratis",
+        rating: "4.8",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://amzn.eu/d/0aF5qc1K",
+        affiliateUrl: "https://amzn.eu/d/0aF5qc1K?tag=comparaweb08-21"
+      },
+      {
+        id: "ps5slim-digital-pccomponentes",
+        store: "PcComponentes",
+        price: 449.90,
+        shipping: "Envío gratis",
+        rating: "4.7",
+        condition: "Nuevo",
+        lastUpdated: "Hoy",
+        url: "https://www.pccomponentes.com/sony-playstation-5-digital-slim",
+        affiliateUrl: null
+      },
+      {
+        id: "ps5slim-digital-mediamarkt",
+        store: "MediaMarkt",
+        price: 449.00,
+        shipping: "Envío gratis",
+        rating: "4.6",
+        condition: "Nuevo",
+        lastUpdated: "Ayer",
+        url: "https://www.mediamarkt.es/es/product/_consola-ps5-sony-playstation-playstation-5-digital-e-chassis-slim-825-gb-white-166110788.html",
         affiliateUrl: null
       }
     ]
