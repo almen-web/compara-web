@@ -21,9 +21,9 @@ export type Product = {
 export const products: Product[] = [
   {
     name: "Apple iPhone 13 128GB (Reacondicionado)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.3",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone13-reacondicionado-amazon",
@@ -62,9 +62,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 14 128GB (Reacondicionado)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.4",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/61cwywLZR-L._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone14-reacondicionado-amazon",
@@ -103,9 +103,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 15 128GB (Nuevo)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.6",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/71657TiFeHL._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone15-nuevo-amazon",
@@ -144,9 +144,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 15 128GB (Reacondicionado)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.4",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/71657TiFeHL._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone15-reacondicionado-amazon",
@@ -185,9 +185,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 16 128GB (Nuevo)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.7",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone16-nuevo-amazon",
@@ -226,9 +226,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 16 128GB (Reacondicionado)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.5",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone16-reacondicionado-amazon",
@@ -256,9 +256,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 17 256GB (Nuevo)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.8",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone17-nuevo-amazon",
@@ -286,9 +286,9 @@ export const products: Product[] = [
   },
   {
     name: "Apple iPhone 17 256GB (Reacondicionado)",
-    category: "Smartphones",
+    category: "Móviles",
     rating: "4.6",
-    image: "📱",
+    image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone17-reacondicionado-amazon",
@@ -327,9 +327,9 @@ export const products: Product[] = [
   },
   {
     name: "PlayStation 5 Slim Standard Edition",
-    category: "Consolas",
+    category: "Gaming",
     rating: "4.9",
-    image: "🎮",
+    image: "https://m.media-amazon.com/images/I/51051FI4pUL._AC_SL1000_.jpg",
     offers: [
       {
         id: "ps5slim-standard-amazon",
@@ -357,9 +357,9 @@ export const products: Product[] = [
   },
   {
     name: "PlayStation 5 Slim Digital Edition",
-    category: "Consolas",
+    category: "Gaming",
     rating: "4.8",
-    image: "🎮",
+    image: "https://m.media-amazon.com/images/I/619BkvKW35L._AC_SL1500_.jpg",
     offers: [
       {
         id: "ps5slim-digital-amazon",

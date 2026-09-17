@@ -54,7 +54,7 @@ export default async function SearchPage({
             <div className="text-5xl">🔍</div>
             <h2 className="mt-4 text-xl font-bold">No se encontraron resultados</h2>
             <p className="mt-2 text-slate-500">
-              Prueba a buscar con otro término como "iPhone" o "MacBook".
+              Prueba a buscar con otro término como "iPhone" o "PlayStation".
             </p>
             <Link
               href="/"
@@ -77,13 +77,17 @@ export default async function SearchPage({
                   className="flex flex-col justify-between rounded-2xl border bg-white p-6 shadow-sm transition hover:shadow-md"
                 >
                   <div>
-                    <div className="flex h-40 w-full items-center justify-center rounded-xl bg-slate-100 text-6xl">
-                      {product.image}
+                    <div className="flex h-48 w-full items-center justify-center rounded-xl bg-white p-4">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="h-full w-full object-contain"
+                      />
                     </div>
                     <p className="mt-4 text-xs font-semibold uppercase text-blue-600">
                       {product.category}
                     </p>
-                    <h2 className="mt-1 text-xl font-bold">{product.name}</h2>
+                    <h2 className="mt-1 text-lg font-bold leading-snug">{product.name}</h2>
                     <p className="mt-2 text-sm text-slate-500">
                       ⭐ {product.rating}/5 · {product.offers.length} ofertas
                     </p>
