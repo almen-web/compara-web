@@ -258,7 +258,7 @@ export const products: Product[] = [
     name: "Apple iPhone 17 256GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
-    image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/71wLpWv1zML._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone17-nuevo-amazon",
@@ -288,7 +288,7 @@ export const products: Product[] = [
     name: "Apple iPhone 17 256GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.6",
-    image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/71wLpWv1zML._AC_SL1500_.jpg",
     offers: [
       {
         id: "iphone17-reacondicionado-amazon",

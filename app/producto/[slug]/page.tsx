@@ -1,26 +1,6 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { products, type Offer } from "@/data/products";
-
-type ProductResponse = {
-  product: {
-    name: string;
-    category: string;
-    rating: string;
-    image: string;
-  };
-  offers: Offer[];
-  totalOffers: number;
-  cheapestOffer: Offer | null;
-};
-
-const priceHistory = [
-  { month: "Ene", price: 349 },
-  { month: "Feb", price: 329 },
-  { month: "Mar", price: 319 },
-  { month: "Abr", price: 309 },
-  { month: "May", price: 299 },
-];
+import { notFound } from "next/navigation";
+import { products } from "@/data/products";
 
 function createSlug(name: string) {
   return name
@@ -30,75 +10,10 @@ function createSlug(name: string) {
     .replace(/\s+/g, "-");
 }
 
-// Genera las rutas estáticas durante el build para que Netlify las sirva directamente
 export async function generateStaticParams() {
   return products.map((product) => ({
     slug: createSlug(product.name),
   }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-
-  const product = products.find(
-    (item) => createSlug(item.name) === slug.toLowerCase()
-  );
-
-  if (!product) {
-    return {
-      title: "Producto no encontrado",
-      description: "El producto que buscas no está disponible en ComparaWeb.",
-    };
-  }
-
-  const cheapestPrice = Math.min(...product.offers.map((offer) => offer.price));
-
-  return {
-    title: `${product.name}: compara precios y ofertas`,
-    description: `Compara precios de ${product.name} en diferentes tiendas. Consulta ofertas, gastos de envío, valoraciones y condiciones en ComparaWeb.`,
-    keywords: [
-      product.name,
-      `${product.name} precio`,
-      `${product.name} ofertas`,
-      `comprar ${product.name}`,
-      `comparar ${product.name}`,
-    ],
-    openGraph: {
-      title: `${product.name}: compara precios y ofertas`,
-      description: `Compara ofertas de ${product.name} desde ${cheapestPrice
-        .toFixed(2)
-        .replace(".", ",")} €.`,
-      type: "website",
-    },
-  };
-}
-
-async function getProductDirectly(slug: string): Promise<ProductResponse | null> {
-  const product = products.find(
-    (item) => createSlug(item.name) === slug.toLowerCase()
-  );
-
-  if (!product) {
-    return null;
-  }
-
-  const sortedOffers = [...product.offers].sort((a, b) => a.price - b.price);
-
-  return {
-    product: {
-      name: product.name,
-      category: product.category,
-      rating: product.rating,
-      image: product.image,
-    },
-    offers: sortedOffers,
-    totalOffers: sortedOffers.length,
-    cheapestOffer: sortedOffers[0] || null,
-  };
 }
 
 export default async function ProductPage({
@@ -108,43 +23,18 @@ export default async function ProductPage({
 }) {
   const { slug } = await params;
 
-  const data = await getProductDirectly(slug);
+  const product = products.find((p) => createSlug(p.name) === slug);
 
-  if (!data) {
-    return (
-      <main className="min-h-screen bg-slate-50 text-slate-900">
-        <header className="border-b bg-white">
-          <div className="mx-auto max-w-6xl px-6 py-4">
-            <Link href="/" className="text-2xl font-bold">
-              Compara<span className="text-blue-600">Web</span>
-            </Link>
-          </div>
-        </header>
-
-        <section className="mx-auto max-w-3xl px-6 py-24 text-center">
-          <div className="text-6xl">🔎</div>
-          <h1 className="mt-6 text-3xl font-bold">Producto no encontrado</h1>
-          <p className="mt-3 text-slate-600">
-            No hemos encontrado este producto.
-          </p>
-          <Link
-            href="/"
-            className="mt-8 inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-          >
-            Volver al inicio
-          </Link>
-        </section>
-      </main>
-    );
+  if (!product) {
+    notFound();
   }
 
-  const { product, offers, cheapestOffer } = data;
+  const cheapestPrice = Math.min(...product.offers.map((o) => o.price));
+  const sortedOffers = [...product.offers].sort((a, b) => a.price - b.price);
 
-  const historyPrices = priceHistory.map((item) => item.price);
-  const minimumPrice = Math.min(...historyPrices);
-  const maximumPrice = Math.max(...historyPrices);
-  const currentPrice = cheapestOffer?.price || 0;
-  const maximumSaving = maximumPrice - currentPrice;
+  const allStores = ["Amazon", "PcComponentes", "MediaMarkt"];
+  const availableStores = product.offers.map((o) => o.store);
+  const unavailableStores = allStores.filter((store) => !availableStores.includes(store));
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
@@ -153,7 +43,6 @@ export default async function ProductPage({
           <Link href="/" className="text-2xl font-bold">
             Compara<span className="text-blue-600">Web</span>
           </Link>
-
           <Link
             href="/"
             className="rounded-xl border px-4 py-2 text-sm font-semibold hover:bg-slate-50"
@@ -165,201 +54,101 @@ export default async function ProductPage({
 
       <section className="mx-auto max-w-6xl px-6 py-10">
         <div className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <div className="flex flex-col gap-8 md:flex-row">
-            <div className="flex h-64 w-full items-center justify-center rounded-2xl bg-slate-100 text-9xl md:w-80">
-              {product.image}
+          <div className="grid gap-8 md:grid-cols-12 md:items-center">
+            <div className="flex h-72 items-center justify-center rounded-2xl bg-slate-50 p-6 md:col-span-5">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-full w-full object-contain"
+              />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-blue-600">
+            <div className="md:col-span-7">
+              <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
                 {product.category}
               </p>
+              <h1 className="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+                {product.name}
+              </h1>
 
-              <h1 className="mt-2 text-4xl font-bold">{product.name}</h1>
-
-              <div className="mt-4 flex flex-wrap gap-3">
-                <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
+              <div className="mt-4 flex items-center gap-3">
+                <span className="rounded-lg bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800">
                   ⭐ {product.rating}/5
                 </span>
-
-                <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
-                  ✓ Nuevo
+                <span className="rounded-lg bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-800">
+                  ✓ Verificado
                 </span>
               </div>
 
-              <p className="mt-6 text-slate-600">
-                Compara las mejores ofertas y encuentra el precio final más bajo.
-              </p>
-
-              <div className="mt-8">
+              <div className="mt-6 border-t pt-6">
                 <p className="text-sm text-slate-500">Mejor precio actual</p>
-
-                <p className="text-4xl font-bold text-blue-600">
-                  {currentPrice.toFixed(2).replace(".", ",")} €
+                <p className="text-4xl font-extrabold text-blue-600">
+                  {cheapestPrice.toFixed(2).replace(".", ",")} €
                 </p>
-
-                {maximumSaving > 0 && (
-                  <p className="mt-2 text-sm font-semibold text-green-600">
-                    🔻 {maximumSaving.toFixed(2).replace(".", ",")} € por debajo del máximo histórico
-                  </p>
-                )}
               </div>
             </div>
           </div>
         </div>
 
-        <section className="mt-10 rounded-2xl border bg-white p-6 shadow-sm md:p-8">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-            <div>
-              <h2 className="text-2xl font-bold">📈 Historial de precios</h2>
-              <p className="mt-2 text-sm text-slate-500">
-                Datos de demostración del prototipo.
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-blue-50 px-4 py-3 text-sm">
-              <span className="font-semibold">Precio actual:</span>{" "}
-              {currentPrice.toFixed(2).replace(".", ",")} €
-            </div>
-          </div>
-
-          <div className="mt-8">
-            <div className="flex h-64 items-end gap-3 border-b border-l border-slate-200 px-4 pb-0">
-              {priceHistory.map((item) => {
-                const percentage =
-                  ((item.price - minimumPrice) /
-                    (maximumPrice - minimumPrice)) *
-                    60 +
-                  25;
-
-                return (
-                  <div
-                    key={item.month}
-                    className="flex h-full flex-1 flex-col items-center justify-end"
-                  >
-                    <div className="mb-2 text-xs font-semibold text-slate-600">
-                      {item.price} €
-                    </div>
-
-                    <div
-                      className="w-full max-w-12 rounded-t-xl bg-blue-500"
-                      style={{ height: `${percentage}%` }}
-                    />
-
-                    <div className="mt-3 text-xs font-semibold text-slate-500">
-                      {item.month}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <div className="rounded-xl bg-green-50 p-4">
-              <p className="text-sm text-slate-500">Precio mínimo</p>
-              <p className="mt-1 text-2xl font-bold text-green-600">
-                {minimumPrice} €
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-blue-50 p-4">
-              <p className="text-sm text-slate-500">Precio actual</p>
-              <p className="mt-1 text-2xl font-bold text-blue-600">
-                {currentPrice.toFixed(2).replace(".", ",")} €
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-red-50 p-4">
-              <p className="text-sm text-slate-500">Precio máximo</p>
-              <p className="mt-1 text-2xl font-bold text-red-600">
-                {maximumPrice} €
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-10">
-          <div>
-            <h2 className="text-2xl font-bold">
-              Comparar precios de {product.name}
-            </h2>
-            <p className="mt-2 text-slate-600">
-              {offers.length} ofertas ordenadas por precio final.
-            </p>
-          </div>
-
-          <div className="mt-6 space-y-4">
-            {offers.map((offer, index) => (
+        {/* Ofertas Disponibles */}
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold">Ofertas disponibles</h2>
+          <div className="mt-6 grid gap-4">
+            {sortedOffers.map((offer) => (
               <div
                 key={offer.id}
-                className="rounded-2xl border bg-white p-6 shadow-sm"
+                className="flex flex-col items-center justify-between gap-4 rounded-2xl border bg-white p-6 shadow-sm sm:flex-row"
               >
-                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-xl font-bold">{offer.store}</h3>
-                      {index === 0 && (
-                        <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-bold text-green-700">
-                          🏆 MEJOR PRECIO
-                        </span>
-                      )}
-                    </div>
+                <div>
+                  <h3 className="text-xl font-bold">{offer.store}</h3>
+                  <p className="mt-1 text-sm text-slate-500">
+                    ⭐ {offer.rating}/5 · Condición: {offer.condition}
+                  </p>
+                  <p className="text-xs text-slate-400">{offer.shipping}</p>
+                </div>
 
-                    <p className="mt-2 text-sm text-slate-500">
-                      ⭐ {offer.rating}/5 · {offer.condition}
-                    </p>
-
-                    <p className="mt-1 text-sm text-slate-500">
-                      🚚 {offer.shipping}
-                    </p>
-
-                    <p className="mt-1 text-xs text-slate-400">
-                      Actualizado: {offer.lastUpdated}
+                <div className="flex items-center gap-6">
+                  <div className="text-right">
+                    <p className="text-2xl font-bold text-slate-900">
+                      {offer.price.toFixed(2).replace(".", ",")} €
                     </p>
                   </div>
-
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                    <div className="text-right">
-                      <p className="text-sm text-slate-500">Precio final</p>
-                      <p className="text-3xl font-bold">
-                        {offer.price.toFixed(2).replace(".", ",")} €
-                      </p>
-                    </div>
-
-                    <Link
-                      href={`/salir/${offer.id}`}
-                      className="rounded-xl bg-blue-600 px-6 py-3 text-center font-semibold text-white hover:bg-blue-700"
-                    >
-                      Comprar
-                    </Link>
-                  </div>
+                  <a
+                    href={`/salir/${offer.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+                  >
+                    Comprar
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        <section className="mt-10 rounded-2xl border border-blue-100 bg-blue-50 p-6">
-          <h2 className="text-xl font-bold">🔔 Alertas de precio</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
-            Próximamente podrás recibir una alerta cuando el precio de este producto baje.
-          </p>
-
-          <button
-            type="button"
-            className="mt-4 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
-          >
-            Avisarme cuando baje
-          </button>
-        </section>
-
-        <section className="mt-6 rounded-2xl border bg-white p-6">
-          <h2 className="text-xl font-bold">ℹ️ Información</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
-            Los precios y el historial mostrados actualmente son datos de prueba. Más adelante conectaremos fuentes autorizadas para mostrar ofertas reales y actualizadas.
-          </p>
-        </section>
+        {/* Tiendas No Disponibles */}
+        {unavailableStores.length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-xl font-bold text-slate-700">Otras tiendas</h2>
+            <div className="mt-4 grid gap-4">
+              {unavailableStores.map((store) => (
+                <div
+                  key={store}
+                  className="flex items-center justify-between rounded-2xl border border-dashed border-slate-300 bg-slate-100 p-6 opacity-75"
+                >
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-600">{store}</h3>
+                    <p className="text-sm text-slate-500">Estado de disponibilidad</p>
+                  </div>
+                  <span className="rounded-xl bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-600">
+                    Sin stock / No disponible
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );
