@@ -23,7 +23,7 @@ export const products: Product[] = [
     name: "Apple iPhone 13 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.5",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/IPhone_13.svg/800px-IPhone_13.svg.png",
+    image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone13-reacondicionado-mediamarkt",
@@ -64,7 +64,7 @@ export const products: Product[] = [
     name: "Apple iPhone 14 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.5",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/IPhone_14_vector.svg/800px-IPhone_14_vector.svg.png",
+    image: "https://images.unsplash.com/photo-1663499482523-1c0c1bae4212?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone14-reacondicionado-pccomponentes",
@@ -105,7 +105,7 @@ export const products: Product[] = [
     name: "Apple iPhone 15 128GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/IPhone_15_vector.svg/800px-IPhone_15_vector.svg.png",
+    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone15-nuevo-amazon",
@@ -146,7 +146,7 @@ export const products: Product[] = [
     name: "Apple iPhone 15 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.7",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/IPhone_15_vector.svg/800px-IPhone_15_vector.svg.png",
+    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone15-reacondicionado-mediamarkt",
@@ -187,7 +187,7 @@ export const products: Product[] = [
     name: "Apple iPhone 16 128GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/IPhone_16_vector.svg/800px-IPhone_16_vector.svg.png",
+    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone16-nuevo-amazon",
@@ -228,7 +228,7 @@ export const products: Product[] = [
     name: "Apple iPhone 16 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.6",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/IPhone_16_vector.svg/800px-IPhone_16_vector.svg.png",
+    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone16-reacondicionado-pccomponentes",
@@ -258,7 +258,7 @@ export const products: Product[] = [
     name: "Apple iPhone 17 256GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
-    image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone17-nuevo-mediamarkt",
@@ -288,7 +288,7 @@ export const products: Product[] = [
     name: "Apple iPhone 17 256GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.8",
-    image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "iphone17-reacondicionado-amazon",
@@ -329,7 +329,7 @@ export const products: Product[] = [
     name: "PlayStation 5 Slim Standard Edition",
     category: "Gaming",
     rating: "4.9",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/800px-PlayStation_5_and_DualSense_with_transparent_background.png",
+    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "ps5slim-standard-mediamarkt",
@@ -359,7 +359,7 @@ export const products: Product[] = [
     name: "PlayStation 5 Slim Digital Edition",
     category: "Gaming",
     rating: "4.8",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/800px-PlayStation_5_and_DualSense_with_transparent_background.png",
+    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80",
     offers: [
       {
         id: "ps5slim-digital-mediamarkt",
