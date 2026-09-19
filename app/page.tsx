@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { products } from '@/data/products';
 import { PriceAlertModal } from '@/components/PriceAlertModal';
 
@@ -195,9 +196,12 @@ export default function HomePage() {
                   className="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden flex flex-col justify-between p-5 hover:shadow-md hover:border-slate-300 transition-all group"
                 >
                   <div>
-                    {/* Contenedor Imagen y Badges */}
-                    <div className="relative h-48 w-full flex items-center justify-center mb-4 bg-slate-50 rounded-xl overflow-hidden p-2">
-                      <span className={`absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                    {/* Contenedor Imagen Clickeable hacia la Ficha */}
+                    <Link
+                      href={`/producto/${product.id}`}
+                      className="relative h-48 w-full flex items-center justify-center mb-4 bg-slate-50 rounded-xl overflow-hidden p-2 block group-hover:bg-slate-100/80 transition-colors"
+                    >
+                      <span className={`absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 ${
                         isRefurbished ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
                       }`}>
                         {isRefurbished ? 'Reacondicionado' : 'Nuevo'}
@@ -208,7 +212,7 @@ export default function HomePage() {
                         alt={product.name}
                         className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
                       />
-                    </div>
+                    </Link>
 
                     {/* Marca y Categoría */}
                     <div className="flex items-center justify-between">
@@ -218,10 +222,12 @@ export default function HomePage() {
                       <span className="text-xs font-medium text-slate-400">{product.brand}</span>
                     </div>
 
-                    {/* Nombre */}
-                    <h2 className="text-base font-bold text-slate-900 mt-2 line-clamp-2 leading-snug">
-                      {product.name}
-                    </h2>
+                    {/* Nombre Clickeable hacia la Ficha */}
+                    <Link href={`/producto/${product.id}`} className="block mt-2">
+                      <h2 className="text-base font-bold text-slate-900 line-clamp-2 leading-snug hover:text-blue-600 transition-colors">
+                        {product.name}
+                      </h2>
+                    </Link>
 
                     {/* Estrellas */}
                     <div className="flex items-center gap-1.5 mt-2">
