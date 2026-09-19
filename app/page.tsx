@@ -42,7 +42,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Rejilla de Productos */}
+        {/* Rejilla de Productos con el formato original */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((product) => {
             const lowestPrice = Math.min(...product.offers.map((o) => o.price));
@@ -53,7 +53,7 @@ export default function HomePage() {
                 className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between p-5 hover:shadow-md transition-shadow"
               >
                 <div>
-                  {/* Imagen del Producto */}
+                  {/* Imagen */}
                   <div className="h-48 w-full flex items-center justify-center mb-4 bg-gray-50 rounded-xl overflow-hidden p-2">
                     <img
                       src={product.image}
@@ -62,31 +62,57 @@ export default function HomePage() {
                     />
                   </div>
 
-                  {/* Categoría */}
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md">
-                    {product.category}
-                  </span>
+                  {/* Categoría y Marca */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md">
+                      {product.category}
+                    </span>
+                    <span className="text-xs font-medium text-gray-400">{product.brand}</span>
+                  </div>
 
-                  {/* Nombre del Producto */}
+                  {/* Título del Producto */}
                   <h2 className="text-base font-bold text-gray-900 mt-2 line-clamp-2">
                     {product.name}
                   </h2>
 
+                  {/* Valoraciones */}
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <div className="flex text-amber-400 text-sm">
+                      {'★'.repeat(Math.round(product.rating))}
+                      {'☆'.repeat(5 - Math.round(product.rating))}
+                    </div>
+                    <span className="text-xs font-semibold text-gray-700">{product.rating}</span>
+                    <span className="text-xs text-gray-400">({product.numReviews})</span>
+                  </div>
+
+                  {/* Especificaciones clave */}
+                  {product.specs && (
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {Object.entries(product.specs).map(([key, val]) => (
+                        val && (
+                          <span key={key} className="text-[11px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-medium">
+                            {val}
+                          </span>
+                        )
+                      ))}
+                    </div>
+                  )}
+
                   {/* Precio Mínimo */}
-                  <div className="mt-3">
-                    <span className="text-xs text-gray-500">Precio más bajo</span>
+                  <div className="mt-4">
+                    <span className="text-xs text-gray-500">Mejor precio disponible</span>
                     <p className="text-2xl font-black text-gray-900">
                       {lowestPrice.toFixed(2)} €
                     </p>
                   </div>
                 </div>
 
-                {/* Zona inferior de la tarjeta: Botón e Historial de tiendas */}
+                {/* Zona inferior: Botón de Alerta + Enlaces por Tienda */}
                 <div className="mt-5 pt-4 border-t border-gray-100 space-y-3">
-                  {/* Botón de Alerta dentro del Producto */}
+                  {/* Botón "Avísame si baja de precio" dentro de cada tarjeta */}
                   <PriceAlertModal productName={product.name} />
 
-                  {/* Enlaces y Ofertas por Tienda */}
+                  {/* Desglose de Ofertas por Tienda */}
                   <div className="space-y-1.5">
                     {product.offers.map((offer, idx) => (
                       <a
@@ -97,7 +123,12 @@ export default function HomePage() {
                         className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-100"
                       >
                         <span className="font-semibold text-gray-700">{offer.store}</span>
-                        <span className="font-bold text-gray-900">{offer.price.toFixed(2)} €</span>
+                        <div className="text-right">
+                          <span className="font-bold text-gray-900 block">{offer.price.toFixed(2)} €</span>
+                          <span className="text-[10px] text-gray-400">
+                            {offer.shippingPrice === 0 ? 'Envío GRATIS' : `+${offer.shippingPrice}€ envío`}
+                          </span>
+                        </div>
                       </a>
                     ))}
                   </div>
