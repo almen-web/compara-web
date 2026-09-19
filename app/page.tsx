@@ -4,6 +4,35 @@ import React, { useState } from 'react';
 import { products } from '@/data/products';
 import { PriceAlertModal } from '@/components/PriceAlertModal';
 
+// IDs de Afiliado
+const AMAZON_TAG = 'comparaweb08-21';
+const AWIN_AFFID = '3098778';
+
+// IDs de Anunciante en Awin (Merchant IDs)
+const AWIN_MERCHANT_IDS: Record<string, string> = {
+  MediaMarkt: '15622',
+  PcComponentes: '15582',
+};
+
+// Función para transformar URLs normales en enlaces con seguimiento de afiliado
+function getAffiliateLink(url: string, store: string): string {
+  if (!url || url === '#') return '#';
+
+  if (store === 'Amazon') {
+    if (url.includes('tag=')) return url;
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}tag=${AMAZON_TAG}`;
+  }
+
+  const merchantId = AWIN_MERCHANT_IDS[store];
+  if (merchantId) {
+    const encodedUrl = encodeURIComponent(url);
+    return `https://www.awin1.com/cread.php?awinmid=${merchantId}&awinaffid=${AWIN_AFFID}&ued=${encodedUrl}`;
+  }
+
+  return url;
+}
+
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
 
@@ -42,7 +71,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Rejilla de Productos con el formato original */}
+        {/* Rejilla de Productos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((product) => {
             const lowestPrice = Math.min(...product.offers.map((o) => o.price));
@@ -70,7 +99,7 @@ export default function HomePage() {
                     <span className="text-xs font-medium text-gray-400">{product.brand}</span>
                   </div>
 
-                  {/* Título del Producto */}
+                  {/* Nombre */}
                   <h2 className="text-base font-bold text-gray-900 mt-2 line-clamp-2">
                     {product.name}
                   </h2>
@@ -85,7 +114,7 @@ export default function HomePage() {
                     <span className="text-xs text-gray-400">({product.numReviews})</span>
                   </div>
 
-                  {/* Especificaciones clave */}
+                  {/* Especificaciones */}
                   {product.specs && (
                     <div className="mt-3 flex flex-wrap gap-1">
                       {Object.entries(product.specs).map(([key, val]) => (
@@ -107,30 +136,35 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Zona inferior: Botón de Alerta + Enlaces por Tienda */}
+                {/* Zona inferior: Botón de Alerta + Enlaces Afiliados */}
                 <div className="mt-5 pt-4 border-t border-gray-100 space-y-3">
-                  {/* Botón "Avísame si baja de precio" dentro de cada tarjeta */}
                   <PriceAlertModal productName={product.name} />
 
-                  {/* Desglose de Ofertas por Tienda */}
                   <div className="space-y-1.5">
-                    {product.offers.map((offer, idx) => (
-                      <a
-                        key={idx}
-                        href={offer.affiliateUrl || offer.url || '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-100"
-                      >
-                        <span className="font-semibold text-gray-700">{offer.store}</span>
-                        <div className="text-right">
-                          <span className="font-bold text-gray-900 block">{offer.price.toFixed(2)} €</span>
-                          <span className="text-[10px] text-gray-400">
-                            {offer.shippingPrice === 0 ? 'Envío GRATIS' : `+${offer.shippingPrice}€ envío`}
-                          </span>
-                        </div>
-                      </a>
-                    ))}
+                    {product.offers.map((offer, idx) => {
+                      const finalAffiliateUrl = getAffiliateLink(
+                        offer.affiliateUrl || offer.url || '',
+                        offer.store
+                      );
+
+                      return (
+                        <a
+                          key={idx}
+                          href={finalAffiliateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-100"
+                        >
+                          <span className="font-semibold text-gray-700">{offer.store}</span>
+                          <div className="text-right">
+                            <span className="font-bold text-gray-900 block">{offer.price.toFixed(2)} €</span>
+                            <span className="text-[10px] text-gray-400">
+                              {offer.shippingPrice === 0 ? 'Envío GRATIS' : `+${offer.shippingPrice}€ envío`}
+                            </span>
+                          </div>
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
