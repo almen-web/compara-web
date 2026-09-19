@@ -152,35 +152,6 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
         )}
-
-        {/* 💬 Opiniones y Valoraciones */}
-        <div className="bg-white rounded-2xl shadow-xs border border-slate-200 p-6 sm:p-8">
-          <h2 className="text-lg font-bold text-slate-900 mb-6">💬 Opiniones de Compradores</h2>
-          
-          <div className="space-y-4">
-            {(product.reviews || [
-              {
-                author: 'Usuario Verificado',
-                rating: 5,
-                comment: 'Excelente producto. Relación calidad/precio inmejorable.',
-                date: 'Reciente'
-              }
-            ]).map((rev, idx) => (
-              <div key={idx} className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-sm text-slate-800">{rev.author}</span>
-                    <div className="flex text-amber-400 text-xs">
-                      {'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}
-                    </div>
-                  </div>
-                  <span className="text-xs text-slate-400">{rev.date}</span>
-                </div>
-                <p className="text-xs text-slate-600 mt-2">{rev.comment}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </main>
   );
