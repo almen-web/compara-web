@@ -1,142 +1,114 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { products } from "@/data/products";
+import { products, Product, Offer } from '@/data/products';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
-function createSlug(name: string) {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "-");
-}
-
-export async function generateStaticParams() {
-  return products.map((product) => ({
-    slug: createSlug(product.name),
-  }));
-}
-
-export default async function ProductPage({
-  params,
-}: {
+interface Props {
   params: Promise<{ slug: string }>;
-}) {
+}
+
+export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
 
-  const product = products.find((p) => createSlug(p.name) === slug);
+  // Buscar producto por ID o slug de forma flexible
+  const product = (products as any[]).find(
+    (p) => p.id === slug || p.slug === slug || p.name.toLowerCase().replace(/ /g, '-') === slug
+  );
 
   if (!product) {
     notFound();
   }
 
-  const cheapestPrice = Math.min(...product.offers.map((o) => o.price));
-  const sortedOffers = [...product.offers].sort((a, b) => a.price - b.price);
-
-  const allStores = ["Amazon", "PcComponentes", "MediaMarkt"];
-  const availableStores = product.offers.map((o) => o.store);
+  const allStores = ['Amazon', 'PcComponentes', 'MediaMarkt'];
+  const availableStores = product.offers.map((o: any) => o.store);
   const unavailableStores = allStores.filter((store) => !availableStores.includes(store));
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="border-b bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-2xl font-bold">
-            Compara<span className="text-blue-600">Web</span>
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      {/* Header */}
+      <header className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <img src="/icon.svg" alt="ComparaWeb Logo" className="w-9 h-9 rounded-lg shadow-sm" />
+            <span className="text-2xl font-bold text-blue-600 tracking-tight">
+              Compara<span className="text-slate-900">Web</span>
+            </span>
           </Link>
-          <Link
-            href="/"
-            className="rounded-xl border px-4 py-2 text-sm font-semibold hover:bg-slate-50"
-          >
-            Nueva búsqueda
+          <Link href="/" className="text-sm font-medium border border-slate-300 rounded-lg px-4 py-2 hover:bg-slate-50 transition">
+            ← Volver al inicio
           </Link>
         </div>
       </header>
 
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <div className="grid gap-8 md:grid-cols-12 md:items-center">
-            <div className="flex h-72 items-center justify-center rounded-2xl bg-slate-50 p-6 md:col-span-5">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="h-full w-full object-contain"
-              />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm mb-10">
+          {/* Imagen */}
+          <div className="flex items-center justify-center p-6 bg-slate-50 rounded-2xl">
+            <img src={product.image || product.imageUrl} alt={product.name} className="max-h-96 object-contain" />
+          </div>
+
+          {/* Información e Identidad */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-md">{product.category}</span>
+              <h1 className="text-3xl font-bold text-slate-900 mt-3 mb-2">{product.name}</h1>
+              <p className="text-sm text-slate-500 mb-6">Marca: <span className="font-semibold text-slate-700">{product.brand}</span></p>
+
+              {/* Especificaciones */}
+              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-6">
+                <h3 className="text-sm font-bold text-slate-900 mb-2">Especificaciones técnicas</h3>
+                <ul className="text-sm text-slate-600 space-y-1">
+                  {product.specs?.ram && <li>• <strong>RAM:</strong> {product.specs.ram}</li>}
+                  {product.specs?.storage && <li>• <strong>Almacenamiento:</strong> {product.specs.storage}</li>}
+                  {product.specs?.screen && <li>• <strong>Pantalla:</strong> {product.specs.screen}</li>}
+                  {product.specs?.chip && <li>• <strong>Procesador:</strong> {product.specs.chip}</li>}
+                </ul>
+              </div>
             </div>
 
-            <div className="md:col-span-7">
-              <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
-                {product.category}
-              </p>
-              <h1 className="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-                {product.name}
-              </h1>
-
-              <div className="mt-4 flex items-center gap-3">
-                <span className="rounded-lg bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800">
-                  ⭐ {product.rating}/5
-                </span>
-                <span className="rounded-lg bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-800">
-                  ✓ Verificado
-                </span>
-              </div>
-
-              <div className="mt-6 border-t pt-6">
-                <p className="text-sm text-slate-500">Mejor precio actual</p>
-                <p className="text-4xl font-extrabold text-blue-600">
-                  {cheapestPrice.toFixed(2).replace(".", ",")} €
-                </p>
-              </div>
+            {/* Valoraciones */}
+            <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
+              <span className="text-yellow-500 text-xl">★</span>
+              <span className="font-bold text-slate-900 text-lg">{product.rating || 4.5}</span>
+              <span className="text-sm text-slate-500">({product.numReviews || 100} valoraciones)</span>
             </div>
           </div>
         </div>
 
         {/* Ofertas Disponibles */}
-        <div className="mt-10">
-          <h2 className="text-2xl font-bold">Ofertas disponibles</h2>
-          <div className="mt-6 grid gap-4">
-            {sortedOffers.map((offer) => (
-              <div
-                key={offer.id}
-                className="flex flex-col items-center justify-between gap-4 rounded-2xl border bg-white p-6 shadow-sm sm:flex-row"
-              >
-                <div>
-                  <h3 className="text-xl font-bold">{offer.store}</h3>
-                  <p className="mt-1 text-sm text-slate-500">
-                    ⭐ {offer.rating}/5 · Condición: {offer.condition}
-                  </p>
-                  <p className="text-xs text-slate-400">{offer.shipping}</p>
-                </div>
+        <h2 className="text-2xl font-bold text-slate-900 mb-4">Compara precios y tiendas</h2>
+        <div className="space-y-4 mb-10">
+          {product.offers.map((offer: any, idx: number) => {
+            const shippingText = offer.shippingPrice === 0 || offer.shipping === 0 ? 'Envío GRATIS' : `Envío: ${offer.shippingPrice || offer.shipping || 0} €`;
 
+            return (
+              <div key={idx} className="flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-200 hover:border-blue-500 transition shadow-sm">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">{offer.store}</h3>
+                  <p className="text-sm text-green-600 font-medium mt-1">{shippingText}</p>
+                </div>
                 <div className="flex items-center gap-6">
-                  <div className="text-right">
-                    <p className="text-2xl font-bold text-slate-900">
-                      {offer.price.toFixed(2).replace(".", ",")} €
-                    </p>
-                  </div>
+                  <span className="text-2xl font-black text-slate-900">{offer.price} €</span>
                   <a
-                    href={`/salir/${offer.id}`}
+                    href={offer.affiliateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl transition shadow-sm"
                   >
-                    Comprar
+                    Ver oferta →
                   </a>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
         {/* Tiendas No Disponibles */}
         {unavailableStores.length > 0 && (
           <div className="mt-10">
-            <h2 className="text-xl font-bold text-slate-700">Otras tiendas</h2>
-            <div className="mt-4 grid gap-4">
+            <h2 className="text-xl font-bold text-slate-700 mb-4">Otras tiendas</h2>
+            <div className="grid gap-4">
               {unavailableStores.map((store) => (
-                <div
-                  key={store}
-                  className="flex items-center justify-between rounded-2xl border border-dashed border-slate-300 bg-slate-100 p-6 opacity-75"
-                >
+                <div key={store} className="flex items-center justify-between rounded-2xl border border-dashed border-slate-300 bg-slate-100 p-6 opacity-75">
                   <div>
                     <h3 className="text-lg font-bold text-slate-600">{store}</h3>
                     <p className="text-sm text-slate-500">Estado de disponibilidad</p>
@@ -149,7 +121,7 @@ export default async function ProductPage({
             </div>
           </div>
         )}
-      </section>
-    </main>
+      </main>
+    </div>
   );
 }
