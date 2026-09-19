@@ -15,6 +15,7 @@ export type Product = {
   category: string;
   rating: string;
   image: string;
+  ram?: string;
   offers: Offer[];
 };
 
@@ -23,6 +24,7 @@ export const products: Product[] = [
     name: "Apple iPhone 13 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.5",
+    ram: "4 GB",
     image: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_SL1500_.jpg",
     offers: [
       {
@@ -64,6 +66,7 @@ export const products: Product[] = [
     name: "Apple iPhone 14 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.5",
+    ram: "6 GB",
     image: "https://m.media-amazon.com/images/I/61cwywLZR-L._AC_SL1500_.jpg",
     offers: [
       {
@@ -105,6 +108,7 @@ export const products: Product[] = [
     name: "Apple iPhone 15 128GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
+    ram: "6 GB",
     image: "https://m.media-amazon.com/images/I/71657TiFeHL._AC_SL1500_.jpg",
     offers: [
       {
@@ -146,6 +150,7 @@ export const products: Product[] = [
     name: "Apple iPhone 15 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.7",
+    ram: "6 GB",
     image: "https://m.media-amazon.com/images/I/71657TiFeHL._AC_SL1500_.jpg",
     offers: [
       {
@@ -187,6 +192,7 @@ export const products: Product[] = [
     name: "Apple iPhone 16 128GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
+    ram: "8 GB",
     image: "https://m.media-amazon.com/images/I/611aO811MFL._AC_SL1500_.jpg",
     offers: [
       {
@@ -228,6 +234,7 @@ export const products: Product[] = [
     name: "Apple iPhone 16 128GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.6",
+    ram: "8 GB",
     image: "https://m.media-amazon.com/images/I/611aO811MFL._AC_SL1500_.jpg",
     offers: [
       {
@@ -258,6 +265,7 @@ export const products: Product[] = [
     name: "Apple iPhone 17 256GB (Nuevo)",
     category: "Móviles",
     rating: "4.8",
+    ram: "8 GB",
     image: "https://m.media-amazon.com/images/I/61+9Y3QdE8L._AC_SL1500_.jpg",
     offers: [
       {
@@ -288,6 +296,7 @@ export const products: Product[] = [
     name: "Apple iPhone 17 256GB (Reacondicionado)",
     category: "Móviles",
     rating: "4.8",
+    ram: "8 GB",
     image: "https://m.media-amazon.com/images/I/61+9Y3QdE8L._AC_SL1500_.jpg",
     offers: [
       {
