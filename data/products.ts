@@ -23,16 +23,16 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // ================= MÓVILES =================
+  // ================= MÓVILES (REACONDICIONADOS) =================
   {
     id: 'iphone-13-128gb-reacondicionado',
     name: 'Apple iPhone 13 128GB (Reacondicionado)',
     category: 'Móviles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=800&auto=format&fit=crop&q=80',
     rating: 4.5,
     numReviews: 5378,
-    specs: { ram: '4 GB', storage: '128 GB', screen: '6.1" Super Retina XDR' },
+    specs: { estado: 'Reacondicionado', ram: '4 GB', storage: '128 GB', screen: '6.1" Super Retina XDR' },
     offers: [
       { store: 'Amazon', price: 279.20, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/06evwbNH' },
       { store: 'MediaMarkt', price: 284.90, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_mvil-iphone-13-apple-medianoche-128-gb-61-95771724.html' },
@@ -44,10 +44,10 @@ export const products: Product[] = [
     name: 'Apple iPhone 14 128GB (Reacondicionado)',
     category: 'Móviles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80',
     rating: 4.5,
     numReviews: 6674,
-    specs: { ram: '6 GB', storage: '128 GB', screen: '6.1" Super Retina XDR' },
+    specs: { estado: 'Reacondicionado', ram: '6 GB', storage: '128 GB', screen: '6.1" Super Retina XDR' },
     offers: [
       { store: 'PcComponentes', price: 320.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-14-128gb-medianoche-libre?refurbished' },
       { store: 'Amazon', price: 324.01, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/0ayW88mc' },
@@ -55,33 +55,16 @@ export const products: Product[] = [
     ]
   },
   {
-    id: 'iphone-15-128gb-nuevo',
-    name: 'Apple iPhone 15 128GB (Nuevo / Reacondicionado)',
+    id: 'iphone-15-128gb-reacondicionado',
+    name: 'Apple iPhone 15 128GB (Reacondicionado)',
     category: 'Móviles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/71d7rfSl0wL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80',
     rating: 4.6,
-    numReviews: 5540,
-    specs: { ram: '6 GB', storage: '128 GB', screen: '6.1" Dynamic Island' },
+    numReviews: 2150,
+    specs: { estado: 'Reacondicionado', ram: '6 GB', storage: '128 GB', screen: '6.1" Dynamic Island' },
     offers: [
-      { store: 'PcComponentes', price: 418.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-15-128gb-negro-libre' },
-      { store: 'Amazon', price: 669.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/07RNF4pU' },
-      { store: 'MediaMarkt', price: 669.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-iphone-15-negro-128-gb-5g-61-oled-super-retina-xdr-chip-a16-bionic-ios-1561320.html' }
-    ]
-  },
-  {
-    id: 'iphone-17-256gb-nuevo',
-    name: 'Apple iPhone 17 (Nuevo)',
-    category: 'Móviles',
-    brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg',
-    rating: 4.7,
-    numReviews: 1305,
-    specs: { ram: '8 GB', storage: '256 GB / 512 GB', screen: '6.3" ProMotion OLED' },
-    offers: [
-      { store: 'Amazon', price: 1079.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/03oq8tN2' },
-      { store: 'MediaMarkt', price: 1079.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-iphone-17-negro-256-gb-5g-63-oled-super-retina-xdr-chip-a19-ios-1606125.html' },
-      { store: 'PcComponentes', price: 1209.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-17-512gb-negro' }
+      { store: 'PcComponentes', price: 418.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-15-128gb-negro-libre?refurbished' }
     ]
   },
   {
@@ -89,25 +72,56 @@ export const products: Product[] = [
     name: 'Apple iPhone 17 256GB (Reacondicionado)',
     category: 'Móviles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80',
     rating: 4.7,
     numReviews: 923,
-    specs: { ram: '8 GB', storage: '256 GB', screen: '6.3" ProMotion OLED' },
+    specs: { estado: 'Reacondicionado', ram: '8 GB', storage: '256 GB', screen: '6.3" ProMotion OLED' },
     offers: [
       { store: 'MediaMarkt', price: 867.90, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-iphone-17-negro-256-gb-5g-63-oled-super-retina-xdr-chip-a19-ios-1606125.html?promotional_offer' },
       { store: 'PcComponentes', price: 875.79, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-17-256-gb-negro' },
       { store: 'Amazon', price: 889.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/06OYrp1C' }
     ]
   },
+
+  // ================= MÓVILES (NUEVOS) =================
   {
-    id: 'samsung-galaxy-s23-128gb',
-    name: 'Samsung Galaxy S23 5G 128GB',
+    id: 'iphone-15-128gb-nuevo',
+    name: 'Apple iPhone 15 128GB (Nuevo)',
+    category: 'Móviles',
+    brand: 'Apple',
+    image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80',
+    rating: 4.6,
+    numReviews: 5540,
+    specs: { estado: 'Nuevo', ram: '6 GB', storage: '128 GB', screen: '6.1" Dynamic Island' },
+    offers: [
+      { store: 'Amazon', price: 669.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/07RNF4pU' },
+      { store: 'MediaMarkt', price: 669.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-iphone-15-negro-128-gb-5g-61-oled-super-retina-xdr-chip-a16-bionic-ios-1561320.html' }
+    ]
+  },
+  {
+    id: 'iphone-17-nuevo',
+    name: 'Apple iPhone 17 (Nuevo)',
+    category: 'Móviles',
+    brand: 'Apple',
+    image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80',
+    rating: 4.7,
+    numReviews: 1305,
+    specs: { estado: 'Nuevo', ram: '8 GB', storage: '256 GB / 512 GB', screen: '6.3" ProMotion OLED' },
+    offers: [
+      { store: 'Amazon', price: 1079.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/03oq8tN2' },
+      { store: 'MediaMarkt', price: 1079.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-iphone-17-negro-256-gb-5g-63-oled-super-retina-xdr-chip-a19-ios-1606125.html' },
+      { store: 'PcComponentes', price: 1209.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-17-512gb-negro' }
+    ]
+  },
+  {
+    id: 'samsung-galaxy-s23-128gb-nuevo',
+    name: 'Samsung Galaxy S23 5G 128GB (Nuevo)',
     category: 'Móviles',
     brand: 'Samsung',
-    image: 'https://m.media-amazon.com/images/I/71qG45u6ljL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80',
     rating: 4.6,
     numReviews: 14694,
-    specs: { ram: '8 GB', storage: '128 GB', screen: '6.1" Dynamic AMOLED 2X' },
+    specs: { estado: 'Nuevo', ram: '8 GB', storage: '128 GB', screen: '6.1" Dynamic AMOLED 2X' },
     offers: [
       { store: 'MediaMarkt', price: 398.50, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_movil-galaxy-s23-samsung-negro-128-gb-61-qualcomm-snapdragon-8-gen-2-103027163.html' },
       { store: 'Amazon', price: 429.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/029ErgEk' },
@@ -115,29 +129,42 @@ export const products: Product[] = [
     ]
   },
   {
-    id: 'samsung-galaxy-s24-128gb',
-    name: 'Samsung Galaxy S24 5G 128GB',
+    id: 'samsung-galaxy-s24-128gb-nuevo',
+    name: 'Samsung Galaxy S24 5G 128GB (Nuevo)',
     category: 'Móviles',
     brand: 'Samsung',
-    image: 'https://m.media-amazon.com/images/I/71R375JAnkL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80',
     rating: 4.6,
-    numReviews: 23586,
-    specs: { ram: '8 GB', storage: '128 GB', screen: '6.2" Dynamic AMOLED 2X' },
+    numReviews: 20942,
+    specs: { estado: 'Nuevo', ram: '8 GB', storage: '128 GB', screen: '6.2" Dynamic AMOLED 2X' },
     offers: [
-      { store: 'PcComponentes', price: 420.69, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/samsung-galaxy-s24-5g-8gb-128gb-62-violeta-cobalto' },
       { store: 'Amazon', price: 499.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/0iW0Jvcg' },
       { store: 'MediaMarkt', price: 537.40, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_movil-galaxy-s24-5g-samsung-negro-128-gb-8-gb-62-exynos-2400-4-nm-136356178.html' }
     ]
   },
   {
-    id: 'samsung-galaxy-s25-128gb',
-    name: 'Samsung Galaxy S25 5G 128GB',
+    id: 'samsung-galaxy-s24-128gb-reacondicionado',
+    name: 'Samsung Galaxy S24 5G 128GB (Reacondicionado)',
     category: 'Móviles',
     brand: 'Samsung',
-    image: 'https://m.media-amazon.com/images/I/71vFKBpKakL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80',
+    rating: 4.6,
+    numReviews: 23586,
+    specs: { estado: 'Reacondicionado', ram: '8 GB', storage: '128 GB', screen: '6.2" Dynamic AMOLED 2X' },
+    offers: [
+      { store: 'MediaMarkt', price: 362.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_movil-galaxy-s24-5g-samsung-negro-128-gb-8-gb-62-exynos-2400-4-nm-136356178.html?reconditioned' },
+      { store: 'PcComponentes', price: 420.69, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/samsung-galaxy-s24-5g-8gb-128gb-62-violeta-cobalto' }
+    ]
+  },
+  {
+    id: 'samsung-galaxy-s25-128gb-nuevo',
+    name: 'Samsung Galaxy S25 5G 128GB (Nuevo)',
+    category: 'Móviles',
+    brand: 'Samsung',
+    image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 26680,
-    specs: { ram: '12 GB', storage: '128 GB', screen: '6.2" FHD+ Dynamic AMOLED' },
+    specs: { estado: 'Nuevo', ram: '12 GB', storage: '128 GB', screen: '6.2" FHD+ Dynamic AMOLED' },
     offers: [
       { store: 'PcComponentes', price: 563.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/samsung-galaxy-s25-5g-12gb-128gb-6-2-negro-azulado' },
       { store: 'MediaMarkt', price: 599.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_movil-samsung-galaxy-s25-navy-128-gb-12-gb-ram-62-fhd-con-ia-snapdragon-8-4000-mah-android-15-1592037.html' },
@@ -145,14 +172,14 @@ export const products: Product[] = [
     ]
   },
   {
-    id: 'samsung-galaxy-s26-256gb',
-    name: 'Samsung Galaxy S26 5G 256GB',
+    id: 'samsung-galaxy-s26-256gb-nuevo',
+    name: 'Samsung Galaxy S26 5G 256GB (Nuevo)',
     category: 'Móviles',
     brand: 'Samsung',
-    image: 'https://m.media-amazon.com/images/I/61aL7x2bZpL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80',
     rating: 4.7,
     numReviews: 14391,
-    specs: { ram: '12 GB', storage: '256 GB', screen: '6.3" FHD+ Dynamic AMOLED 2X' },
+    specs: { estado: 'Nuevo', ram: '12 GB', storage: '256 GB', screen: '6.3" FHD+ Dynamic AMOLED 2X' },
     offers: [
       { store: 'Amazon', price: 759.05, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/09WTgQsM' },
       { store: 'PcComponentes', price: 760.94, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/samsung-galaxy-s26-5g-12gb-256gb-6-3-negro-version-importada-eu' },
@@ -166,7 +193,7 @@ export const products: Product[] = [
     name: 'Sony PlayStation 5 Slim Standard Edition 1TB',
     category: 'Gaming',
     brand: 'Sony',
-    image: 'https://m.media-amazon.com/images/I/510L1w6Cq4L._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 690,
     specs: { storage: '1 TB SSD' },
@@ -180,7 +207,7 @@ export const products: Product[] = [
     name: 'Sony PlayStation 5 Slim Edición Digital',
     category: 'Gaming',
     brand: 'Sony',
-    image: 'https://m.media-amazon.com/images/I/510L1w6Cq4L._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80',
     rating: 4.7,
     numReviews: 4733,
     specs: { storage: '825 GB / 1 TB SSD' },
@@ -195,10 +222,10 @@ export const products: Product[] = [
     name: 'Sony PlayStation 4 Slim 1TB (Reacondicionado)',
     category: 'Gaming',
     brand: 'Sony',
-    image: 'https://m.media-amazon.com/images/I/71PGv3p4zL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=800&auto=format&fit=crop&q=80',
     rating: 4.0,
     numReviews: 246,
-    specs: { storage: '1 TB' },
+    specs: { estado: 'Reacondicionado', storage: '1 TB' },
     offers: [
       { store: 'Amazon', price: 179.99, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/00bvRnRi' },
       { store: 'MediaMarkt', price: 211.57, shippingPrice: 11.95, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_consola-ps4-sony-9856764-ps4-1tb-slim-negra-1-tb-negro-107803089.html' }
@@ -209,7 +236,7 @@ export const products: Product[] = [
     name: 'Nintendo Switch (Modelo 2022) Joy-Con Azul/Rojo Neón',
     category: 'Gaming',
     brand: 'Nintendo',
-    image: 'https://m.media-amazon.com/images/I/61-PblYntsL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 7865,
     specs: { storage: '32 GB', screen: '6.2" LCD' },
@@ -223,7 +250,7 @@ export const products: Product[] = [
     name: 'Nintendo Switch OLED',
     category: 'Gaming',
     brand: 'Nintendo',
-    image: 'https://m.media-amazon.com/images/I/81S6-J-38iL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=800&auto=format&fit=crop&q=80',
     rating: 4.7,
     numReviews: 20785,
     specs: { storage: '64 GB', screen: '7.0" OLED' },
@@ -238,7 +265,7 @@ export const products: Product[] = [
     name: 'Microsoft Xbox Series X Digital 1TB Blanco',
     category: 'Gaming',
     brand: 'Microsoft',
-    image: 'https://m.media-amazon.com/images/I/61-2A1B4G6L._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 2087,
     specs: { storage: '1 TB SSD' },
@@ -252,7 +279,7 @@ export const products: Product[] = [
     name: 'Microsoft Xbox Series S Digital',
     category: 'Gaming',
     brand: 'Microsoft',
-    image: 'https://m.media-amazon.com/images/I/71NBQ2a52CL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=800&auto=format&fit=crop&q=80',
     rating: 4.7,
     numReviews: 2205,
     specs: { storage: '512 GB / 1 TB SSD' },
@@ -266,14 +293,14 @@ export const products: Product[] = [
 
   // ================= AUDIO =================
   {
-    id: 'apple-airpods-3',
-    name: 'Apple AirPods 3ª Generación',
+    id: 'apple-airpods-3-nuevo',
+    name: 'Apple AirPods 3ª Generación (Nuevo)',
     category: 'Audio',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 6261,
-    specs: { chip: 'Apple H1' },
+    specs: { estado: 'Nuevo', chip: 'Apple H1' },
     offers: [
       { store: 'PcComponentes', price: 152.99, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-airpods-3a-generacion-con-estuche-de-carga-magsafe-blancos' },
       { store: 'MediaMarkt', price: 219.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-airpods-pro-3-2025-3a-gen-inalambricos-cancelacion-de-ruido-medicion-frecuencia-cardiaca-live-translation-chip-h2-usb-c-blanco-1606182.html' },
@@ -281,14 +308,14 @@ export const products: Product[] = [
     ]
   },
   {
-    id: 'apple-airpods-4-anc',
-    name: 'Apple AirPods 4 con Cancelación Activa de Ruido',
+    id: 'apple-airpods-4-anc-nuevo',
+    name: 'Apple AirPods 4 con Cancelación Activa de Ruido (Nuevo)',
     category: 'Audio',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61m1aP3-YpL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 13440,
-    specs: { chip: 'Apple H2' },
+    specs: { estado: 'Nuevo', chip: 'Apple H2' },
     offers: [
       { store: 'MediaMarkt', price: 129.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-airpods-4-con-cancelacion-activa-de-ruido-2024-4a-gen-inalambricos-bluetoothr-estuche-de-carga-inalambrico-chip-h2-siri-usb-c-blanco-1582271.html' },
       { store: 'Amazon', price: 161.45, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/04unC1No' },
@@ -296,14 +323,14 @@ export const products: Product[] = [
     ]
   },
   {
-    id: 'apple-airpods-5',
-    name: 'Apple AirPods 5 con Cancelación Activa de Ruido',
+    id: 'apple-airpods-5-nuevo',
+    name: 'Apple AirPods 5 con Cancelación Activa de Ruido (Nuevo)',
     category: 'Audio',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/51Q8D18CsbL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 950,
-    specs: { chip: 'Apple H2' },
+    specs: { estado: 'Nuevo', chip: 'Apple H2' },
     offers: [
       { store: 'PcComponentes', price: 149.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/auriculares-apple-airpods-5-inalambricos-bluetooth-con-cancelacion-activa-de-ruido-usb-c-blancos' },
       { store: 'Amazon', price: 169.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/0fgs6NMZ' },
@@ -311,16 +338,16 @@ export const products: Product[] = [
     ]
   },
 
-  // ================= PORTÁTILES =================
+  // ================= PORTÁTILES (REACONDICIONADOS) =================
   {
     id: 'macbook-air-m1-reacondicionado',
     name: 'Apple MacBook Air 13" Chip M1 (Reacondicionado)',
     category: 'Portátiles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 938,
-    specs: { ram: '8 GB', storage: '256 GB / 1 TB SSD', screen: '13.3" Retina' },
+    specs: { estado: 'Reacondicionado', ram: '8 GB', storage: '256 GB / 1 TB SSD', screen: '13.3" Retina' },
     offers: [
       { store: 'PcComponentes', price: 709.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-macbook-air-apple-m1-8gb-256gb-ssd-gpu-hepta-core-133-dorado?refurbished' },
       { store: 'MediaMarkt', price: 719.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_portatil-apple-macbook-air-133-retina-apple-mm1-8-gb-ram-256-gb-ssd-256-gb-ssd-m1-macos-137220705.html' },
@@ -332,10 +359,10 @@ export const products: Product[] = [
     name: 'Apple MacBook Air 13.6" Chip M2 (Reacondicionado)',
     category: 'Portátiles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/71f5Eu5lJSL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 509,
-    specs: { ram: '8 GB', storage: '256 GB SSD', screen: '13.6" Liquid Retina' },
+    specs: { estado: 'Reacondicionado', ram: '8 GB', storage: '256 GB SSD', screen: '13.6" Liquid Retina' },
     offers: [
       { store: 'Amazon', price: 1028.02, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/0djpCVSJ' },
       { store: 'MediaMarkt', price: 1159.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_portatil-apple-macbook-air-136-apple-mm2-8-gb-ram-256-gb-ssd-m2-macos-108016592.html' },
@@ -347,10 +374,10 @@ export const products: Product[] = [
     name: 'Apple MacBook Pro 14" Chip M3 512GB (Reacondicionado)',
     category: 'Portátiles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/61RJn0of12L._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80',
     rating: 4.8,
     numReviews: 2100,
-    specs: { ram: '8 GB', storage: '512 GB SSD', screen: '14.2" Liquid Retina XDR' },
+    specs: { estado: 'Reacondicionado', ram: '8 GB', storage: '512 GB SSD', screen: '14.2" Liquid Retina XDR' },
     offers: [
       { store: 'MediaMarkt', price: 1269.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_portatil-apple-macbook-pro-14-apple-m3-8-nucleos-cpu-10-nucleos-gpu-8-gb-ram-512-gb-ssd-m3-macos-idioma-del-teclado-es-plata-181187400.html' },
       { store: 'Amazon', price: 1302.42, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/0avzCczq' }
@@ -361,23 +388,25 @@ export const products: Product[] = [
     name: 'Apple MacBook Air 13" Chip M4 256GB (Reacondicionado)',
     category: 'Portátiles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/71TPdaC65dL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80',
     rating: 5.0,
     numReviews: 2,
-    specs: { ram: '16 GB', storage: '256 GB SSD', screen: '13.6" Liquid Retina' },
+    specs: { estado: 'Reacondicionado', ram: '16 GB', storage: '256 GB SSD', screen: '13.6" Liquid Retina' },
     offers: [
       { store: 'Amazon', price: 1400.42, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/01cQT7Bd' }
     ]
   },
+
+  // ================= PORTÁTILES (NUEVOS) =================
   {
     id: 'macbook-air-m5-nuevo',
-    name: 'Apple MacBook Air 13.6" Chip M5 512GB',
+    name: 'Apple MacBook Air 13.6" Chip M5 512GB (Nuevo)',
     category: 'Portátiles',
     brand: 'Apple',
-    image: 'https://m.media-amazon.com/images/I/71TPdaC65dL._AC_SL1500_.jpg',
+    image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80',
     rating: 4.9,
     numReviews: 225,
-    specs: { ram: '16 GB', storage: '512 GB SSD', screen: '13.6" Liquid Retina' },
+    specs: { estado: 'Nuevo', ram: '16 GB', storage: '512 GB SSD', screen: '13.6" Liquid Retina' },
     offers: [
       { store: 'MediaMarkt', price: 1319.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_apple-macbook-air-2026-136-retina-chip-m5-apple-cpu-de-10-nucleos-gpu-de-8-nucleos-16gb-ram-512gb-ssd-medianoche-1622308.html' },
       { store: 'PcComponentes', price: 1379.00, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/portatil-apple-macbook-air-13-apple-m5-16gb-512gb-ssd-gpu-8-nucleos-macos-medianoche' },
