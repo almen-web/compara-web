@@ -1,93 +1,47 @@
-import { products, type Offer } from "@/data/products";
+import { products, Offer } from '@/data/products';
 
-export type PreparedOffer = Offer & {
-  productName: string;
-  productCategory: string;
-  productImage: string;
-  shippingCost: number;
+export interface PreparedOffer extends Offer {
+  id: string;
+  url: string;
+  shipping: number | string;
   totalPrice: number;
-};
-
-function getShippingCost(shipping: string): number {
-  if (shipping.toLowerCase() === "envío gratis") {
-    return 0;
-  }
-
-  const match = shipping.match(/([\d.,]+)\s*€/);
-
-  if (!match) {
-    return 0;
-  }
-
-  return Number(match[1].replace(",", "."));
+  productName: string;
+  productImage: string;
 }
 
 export function getAllOffers(): PreparedOffer[] {
-  return products.flatMap((product) =>
-    product.offers.map((offer) => {
-      const shippingCost = getShippingCost(
-        offer.shipping
-      );
+  const allOffers: PreparedOffer[] = [];
 
-      return {
+  products.forEach((product) => {
+    product.offers.forEach((offer, index) => {
+      const offerId = offer.id || `${product.id}-${offer.store.toLowerCase()}-${index}`;
+      const offerUrl = offer.affiliateUrl || offer.url || '#';
+      const offerShipping = offer.shippingPrice !== undefined ? offer.shippingPrice : (offer.shipping !== undefined ? offer.shipping : 0);
+      
+      const shippingNum = typeof offerShipping === 'number' ? offerShipping : 0;
+      const calcTotalPrice = offer.price + shippingNum;
+
+      allOffers.push({
         ...offer,
+        id: offerId,
+        url: offerUrl,
+        shipping: offerShipping,
+        totalPrice: calcTotalPrice,
         productName: product.name,
-        productCategory: product.category,
         productImage: product.image,
-        shippingCost,
-        totalPrice:
-          offer.price + shippingCost,
-      };
-    })
-  );
+      });
+    });
+  });
+
+  return allOffers;
 }
 
-export function getOffersForProduct(
-  productName: string
-): PreparedOffer[] {
-  const normalizedName = productName
-    .toLowerCase()
-    .trim();
-
-  return getAllOffers()
-    .filter(
-      (offer) =>
-        offer.productName
-          .toLowerCase()
-          .trim() === normalizedName
-    )
-    .sort(
-      (a, b) =>
-        a.totalPrice - b.totalPrice
-    );
+export function getOfferById(id: string): PreparedOffer | undefined {
+  return getAllOffers().find((o) => o.id === id);
 }
 
-export function getOffersForStore(
-  storeName: string
-): PreparedOffer[] {
-  const normalizedStore = storeName
-    .toLowerCase()
-    .trim();
-
-  return getAllOffers()
-    .filter(
-      (offer) =>
-        offer.store
-          .toLowerCase()
-          .trim() === normalizedStore
-    )
-    .sort(
-      (a, b) =>
-        a.totalPrice - b.totalPrice
-    );
-}
-
-export function getOfferById(
-  offerId: string
-): PreparedOffer | null {
-  return (
-    getAllOffers().find(
-      (offer) => offer.id === offerId
-    ) || null
+export function getOffersForProduct(productId: string): PreparedOffer[] {
+  return getAllOffers().filter((offer) =>
+    offer.id.startsWith(productId) || offer.productName.toLowerCase().includes(productId.toLowerCase())
   );
 }

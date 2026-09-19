@@ -1,10 +1,13 @@
 export interface Offer {
+  id?: string;
   store: 'Amazon' | 'PcComponentes' | 'MediaMarkt';
   price: number;
   originalPrice?: number;
-  shippingPrice: number | string;
+  shippingPrice?: number | string;
+  shipping?: number | string;
   inStock: boolean;
-  affiliateUrl: string;
+  affiliateUrl?: string;
+  url?: string;
 }
 
 export interface Product {

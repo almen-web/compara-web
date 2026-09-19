@@ -1,28 +1,16 @@
-import { NextResponse } from "next/server";
-import { products } from "@/data/products";
+import { NextRequest, NextResponse } from 'next/server';
+import { getOfferById } from '@/lib/offers';
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ offerID: string }> }
 ) {
   const { offerID } = await params;
+  const offer = getOfferById(offerID);
 
-  // Buscar la oferta por su ID dentro de todos los productos
-  let targetUrl: string | null = null;
-
-  for (const product of products) {
-    const offer = product.offers.find((o) => o.id === offerID);
-    if (offer) {
-      targetUrl = offer.affiliateUrl || offer.url;
-      break;
-    }
+  if (!offer || !offer.url) {
+    return NextResponse.redirect(new URL('/', request.url));
   }
 
-  // Si no se encuentra la oferta o la URL, redirigir al inicio
-  if (!targetUrl) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
-  // Redirigir directamente al enlace de la tienda / afiliado
-  return NextResponse.redirect(targetUrl);
+  return NextResponse.redirect(offer.url);
 }
