@@ -2,12 +2,16 @@ import { products } from '@/data/products';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-interface Props {
-  params: Promise<{ slug: string }>;
-}
+export const dynamic = 'force-dynamic';
 
-export default async function ProductPage({ params }: Props) {
-  const { slug } = await params;
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug;
+
+  if (!slug) {
+    notFound();
+  }
+
   const decodedSlug = decodeURIComponent(slug);
 
   const product = (products as any[]).find(
@@ -19,7 +23,7 @@ export default async function ProductPage({ params }: Props) {
   }
 
   const allStores = ['Amazon', 'PcComponentes', 'MediaMarkt'];
-  const availableStores = product.offers.map((o: any) => o.store);
+  const availableStores = product.offers ? product.offers.map((o: any) => o.store) : [];
   const unavailableStores = allStores.filter((store) => !availableStores.includes(store));
 
   return (
@@ -71,7 +75,7 @@ export default async function ProductPage({ params }: Props) {
 
         <h2 className="text-2xl font-bold text-slate-900 mb-4">Compara precios y tiendas</h2>
         <div className="space-y-4 mb-10">
-          {product.offers.map((offer: any, idx: number) => {
+          {product.offers && product.offers.map((offer: any, idx: number) => {
             const shippingText = offer.shippingPrice === 0 || offer.shipping === 0 ? 'Envío GRATIS' : `Envío: ${offer.shippingPrice || offer.shipping || 0} €`;
 
             return (
