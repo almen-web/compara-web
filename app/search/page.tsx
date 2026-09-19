@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { products } from '@/data/products';
 
+export const dynamic = 'force-dynamic';
+
 interface Props {
   searchParams: Promise<{ category?: string; q?: string }>;
 }
@@ -8,17 +10,16 @@ interface Props {
 export default async function SearchPage({ searchParams }: Props) {
   const { category, q } = await searchParams;
 
-  // Filtrar productos por categoría o por término de búsqueda (q)
   const filteredProducts = (products as any[]).filter((p) => {
     let matchesCategory = true;
     let matchesQuery = true;
 
     if (category) {
-      matchesCategory = p.category.toLowerCase() === category.toLowerCase();
+      matchesCategory = p.category.toLowerCase().trim() === category.toLowerCase().trim();
     }
 
     if (q) {
-      const query = q.toLowerCase();
+      const query = q.toLowerCase().trim();
       matchesQuery =
         p.name.toLowerCase().includes(query) ||
         p.brand.toLowerCase().includes(query) ||
@@ -36,7 +37,6 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
-      {/* Header */}
       <header className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
@@ -59,8 +59,8 @@ export default async function SearchPage({ searchParams }: Props) {
 
         {filteredProducts.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-3xl border border-slate-200">
-            <p className="text-lg text-slate-600 mb-4">No se encontraron productos en esta sección.</p>
-            <Link href="/" className="bg-blue-600 text-white font-bold px-6 py-3 rounded-xl transition hover:bg-blue-700 inline-block">
+            <p className="text-lg text-slate-600 mb-4">No se encontraron productos en esta categoría.</p>
+            <Link href="/search" className="bg-blue-600 text-white font-bold px-6 py-3 rounded-xl transition hover:bg-blue-700 inline-block">
               Ver todos los productos
             </Link>
           </div>

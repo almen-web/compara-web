@@ -1,4 +1,4 @@
-import { products, Product, Offer } from '@/data/products';
+import { products } from '@/data/products';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -8,10 +8,10 @@ interface Props {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
-  // Buscar producto por ID o slug de forma flexible
   const product = (products as any[]).find(
-    (p) => p.id === slug || p.slug === slug || p.name.toLowerCase().replace(/ /g, '-') === slug
+    (p) => p.id === decodedSlug || p.slug === decodedSlug || p.name === decodedSlug
   );
 
   if (!product) {
@@ -24,7 +24,6 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
-      {/* Header */}
       <header className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
@@ -41,19 +40,16 @@ export default async function ProductPage({ params }: Props) {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm mb-10">
-          {/* Imagen */}
           <div className="flex items-center justify-center p-6 bg-slate-50 rounded-2xl">
             <img src={product.image || product.imageUrl} alt={product.name} className="max-h-96 object-contain" />
           </div>
 
-          {/* Información e Identidad */}
           <div className="flex flex-col justify-between">
             <div>
               <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-md">{product.category}</span>
               <h1 className="text-3xl font-bold text-slate-900 mt-3 mb-2">{product.name}</h1>
               <p className="text-sm text-slate-500 mb-6">Marca: <span className="font-semibold text-slate-700">{product.brand}</span></p>
 
-              {/* Especificaciones */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-6">
                 <h3 className="text-sm font-bold text-slate-900 mb-2">Especificaciones técnicas</h3>
                 <ul className="text-sm text-slate-600 space-y-1">
@@ -65,7 +61,6 @@ export default async function ProductPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Valoraciones */}
             <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
               <span className="text-yellow-500 text-xl">★</span>
               <span className="font-bold text-slate-900 text-lg">{product.rating || 4.5}</span>
@@ -74,7 +69,6 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Ofertas Disponibles */}
         <h2 className="text-2xl font-bold text-slate-900 mb-4">Compara precios y tiendas</h2>
         <div className="space-y-4 mb-10">
           {product.offers.map((offer: any, idx: number) => {
@@ -102,7 +96,6 @@ export default async function ProductPage({ params }: Props) {
           })}
         </div>
 
-        {/* Tiendas No Disponibles */}
         {unavailableStores.length > 0 && (
           <div className="mt-10">
             <h2 className="text-xl font-bold text-slate-700 mb-4">Otras tiendas</h2>
