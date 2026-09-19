@@ -10,6 +10,18 @@ export interface Offer {
   url?: string;
 }
 
+export interface PricePoint {
+  month: string;
+  price: number;
+}
+
+export interface Review {
+  author: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -20,6 +32,8 @@ export interface Product {
   numReviews: number;
   specs: Record<string, string | undefined>;
   offers: Offer[];
+  priceHistory?: PricePoint[];
+  reviews?: Review[];
 }
 
 export const products: Product[] = [
@@ -37,6 +51,18 @@ export const products: Product[] = [
       { store: 'Amazon', price: 279.20, shippingPrice: 0, inStock: true, affiliateUrl: 'https://amzn.eu/d/06evwbNH' },
       { store: 'MediaMarkt', price: 284.90, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.mediamarkt.es/es/product/_mvil-iphone-13-apple-medianoche-128-gb-61-95771724.html' },
       { store: 'PcComponentes', price: 287.49, shippingPrice: 0, inStock: true, affiliateUrl: 'https://www.pccomponentes.com/apple-iphone-13-128gb-medianoche-libre?refurbished' }
+    ],
+    priceHistory: [
+      { month: 'Abr', price: 340 },
+      { month: 'May', price: 320 },
+      { month: 'Jun', price: 310 },
+      { month: 'Jul', price: 299 },
+      { month: 'Ago', price: 289 },
+      { month: 'Sep', price: 279.20 }
+    ],
+    reviews: [
+      { author: 'Carlos M.', rating: 5, comment: 'Pantalla impecable y salud de batería al 96%. Excelente compra.', date: '10 Sep 2026' },
+      { author: 'Elena R.', rating: 4, comment: 'Llegó en 24h. Tiene un pequeño rasguño casi imperceptible en el marco.', date: '01 Sep 2026' }
     ]
   },
   {
