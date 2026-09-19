@@ -4,32 +4,21 @@ import React, { useState } from 'react';
 import { products } from '@/data/products';
 import { PriceAlertModal } from '@/components/PriceAlertModal';
 
-// IDs de Afiliado
+// ID de Afiliado de Amazon
 const AMAZON_TAG = 'comparaweb08-21';
-const AWIN_AFFID = '3098778';
 
-// IDs de Anunciante en Awin (Merchant IDs)
-const AWIN_MERCHANT_IDS: Record<string, string> = {
-  MediaMarkt: '15622',
-  PcComponentes: '15582',
-};
-
-// Función para transformar URLs normales en enlaces con seguimiento de afiliado
+// Función para transformar URLs
 function getAffiliateLink(url: string, store: string): string {
   if (!url || url === '#') return '#';
 
+  // Amazon: Se asegura de incluir el Tag de afiliado siempre
   if (store === 'Amazon') {
     if (url.includes('tag=')) return url;
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}tag=${AMAZON_TAG}`;
   }
 
-  const merchantId = AWIN_MERCHANT_IDS[store];
-  if (merchantId) {
-    const encodedUrl = encodeURIComponent(url);
-    return `https://www.awin1.com/cread.php?awinmid=${merchantId}&awinaffid=${AWIN_AFFID}&ued=${encodedUrl}`;
-  }
-
+  // PcComponentes y MediaMarkt: Enlace directo funcional a la ficha del producto
   return url;
 }
 
@@ -136,13 +125,13 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Zona inferior: Botón de Alerta + Enlaces Afiliados */}
+                {/* Zona inferior: Botón de Alerta + Enlaces Directos */}
                 <div className="mt-5 pt-4 border-t border-gray-100 space-y-3">
                   <PriceAlertModal productName={product.name} />
 
                   <div className="space-y-1.5">
                     {product.offers.map((offer, idx) => {
-                      const finalAffiliateUrl = getAffiliateLink(
+                      const finalUrl = getAffiliateLink(
                         offer.affiliateUrl || offer.url || '',
                         offer.store
                       );
@@ -150,7 +139,7 @@ export default function HomePage() {
                       return (
                         <a
                           key={idx}
-                          href={finalAffiliateUrl}
+                          href={finalUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-100"
