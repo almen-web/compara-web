@@ -10,16 +10,12 @@ export interface Offer {
 export interface Product {
   id: string;
   name: string;
-  category: 'Móviles' | 'Portátiles' | 'Audio' | 'Gaming';
+  category: string;
   brand: string;
   image: string;
   rating: number;
   numReviews: number;
-  specs: {
-    ram?: string;
-    storage?: string;
-    [key: string]: string | undefined;
-  };
+  specs: Record<string, string | undefined>;
   offers: Offer[];
 }
 

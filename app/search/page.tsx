@@ -3,11 +3,7 @@ import { products } from '@/data/products';
 
 export const dynamic = 'force-dynamic';
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string; q?: string }>;
-}) {
+export default async function SearchPage({ searchParams }: any) {
   const resolvedSearchParams = await searchParams;
   const category = resolvedSearchParams?.category;
   const q = resolvedSearchParams?.q;
