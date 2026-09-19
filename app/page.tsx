@@ -4,6 +4,8 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { products } from '@/data/products';
 import { PriceAlertModal } from '@/components/PriceAlertModal';
+import { TopDealsBanner } from '@/components/TopDealsBanner';
+import { CommunityFloat } from '@/components/CommunityFloat';
 
 // ID de Afiliado de Amazon
 const AMAZON_TAG = 'comparaweb08-21';
@@ -68,10 +70,10 @@ export default function HomePage() {
   }, [searchQuery, selectedCategory, selectedCondition, sortBy]);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-between text-slate-800">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-between text-slate-800 relative">
       <main className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         {/* Cabecera Principal */}
-        <header className="mb-10 text-center">
+        <header className="mb-8 text-center">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold mb-3 border border-blue-100">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
             Actualizado en tiempo real
@@ -83,6 +85,9 @@ export default function HomePage() {
             Encuentra de un vistazo el precio más bajo entre las principales tiendas de tecnología de España.
           </p>
         </header>
+
+        {/* ⚡ Banner de Chollos Destacados del Día */}
+        <TopDealsBanner />
 
         {/* Panel de Búsqueda y Control de Filtros */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5 mb-8 space-y-4">
@@ -310,6 +315,9 @@ export default function HomePage() {
           </div>
         )}
       </main>
+
+      {/* 🔥 Botón Flotante para Canales de Chollos (Telegram / WhatsApp) */}
+      <CommunityFloat />
 
       {/* Pie de Página / Aviso de Afiliados Obligatorio */}
       <footer className="bg-white border-t border-slate-200 py-8 px-4 sm:px-6 lg:px-8 mt-16 text-center text-xs text-slate-500">
