@@ -53,6 +53,7 @@ export default function HomePage() {
                 className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between p-5 hover:shadow-md transition-shadow"
               >
                 <div>
+                  {/* Imagen del Producto */}
                   <div className="h-48 w-full flex items-center justify-center mb-4 bg-gray-50 rounded-xl overflow-hidden p-2">
                     <img
                       src={product.image}
@@ -61,14 +62,17 @@ export default function HomePage() {
                     />
                   </div>
 
+                  {/* Categoría */}
                   <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md">
                     {product.category}
                   </span>
 
+                  {/* Nombre del Producto */}
                   <h2 className="text-base font-bold text-gray-900 mt-2 line-clamp-2">
                     {product.name}
                   </h2>
 
+                  {/* Precio Mínimo */}
                   <div className="mt-3">
                     <span className="text-xs text-gray-500">Precio más bajo</span>
                     <p className="text-2xl font-black text-gray-900">
@@ -77,20 +81,20 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Sección de Botones */}
-                <div className="mt-5 space-y-2.5">
-                  {/* Botón de Alerta */}
+                {/* Zona inferior de la tarjeta: Botón e Historial de tiendas */}
+                <div className="mt-5 pt-4 border-t border-gray-100 space-y-3">
+                  {/* Botón de Alerta dentro del Producto */}
                   <PriceAlertModal productName={product.name} />
 
-                  {/* Lista/Detalle de Ofertas */}
-                  <div className="pt-2 border-t border-gray-100 space-y-1.5">
+                  {/* Enlaces y Ofertas por Tienda */}
+                  <div className="space-y-1.5">
                     {product.offers.map((offer, idx) => (
                       <a
                         key={idx}
                         href={offer.affiliateUrl || offer.url || '#'}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between text-xs p-2 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200"
+                        className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-100"
                       >
                         <span className="font-semibold text-gray-700">{offer.store}</span>
                         <span className="font-bold text-gray-900">{offer.price.toFixed(2)} €</span>
