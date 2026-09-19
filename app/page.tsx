@@ -1,137 +1,121 @@
-import Link from "next/link";
-import { products } from "@/data/products";
-
-function createSlug(name: string) {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "-");
-}
+import Link from 'next/link';
+import { products } from '@/data/products';
 
 export default function HomePage() {
-  const categories = [
-    { name: "Móviles", icon: "📱", href: "/search?q=Móviles" },
-    { name: "Portátiles", icon: "💻", href: "/search?q=Portátiles" },
-    { name: "Audio", icon: "🎧", href: "/search?q=Audio" },
-    { name: "Gaming", icon: "🎮", href: "/search?q=Gaming" },
-  ];
+  // Se castea temporalmente como any[] para asegurar compatibilidad con la clave de mapeo
+  const featuredProducts = (products as any[]).slice(0, 4);
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      {/* Header */}
-      <header className="border-b bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-2xl font-bold">
-            Compara<span className="text-blue-600">Web</span>
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      {/* Cabecera / Header con el Logo integrado */}
+      <header className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <img 
+              src="/icon.svg" 
+              alt="ComparaWeb Logo" 
+              className="w-9 h-9 rounded-lg shadow-sm"
+            />
+            <span className="text-2xl font-bold text-blue-600 tracking-tight">
+              Compara<span className="text-slate-900">Web</span>
+            </span>
           </Link>
-          <nav className="flex gap-4">
-            <Link
-              href="/search"
-              className="rounded-xl border px-4 py-2 text-sm font-semibold hover:bg-slate-50"
-            >
-              Ver todo
-            </Link>
-          </nav>
+          
+          <Link 
+            href="/search" 
+            className="text-sm font-medium border border-slate-300 rounded-lg px-4 py-2 hover:bg-slate-50 transition"
+          >
+            Ver todo
+          </Link>
         </div>
       </header>
 
-      {/* Hero / Buscador */}
-      <section className="bg-white py-16 text-center border-b">
-        <div className="mx-auto max-w-3xl px-6">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Compara precios de tiendas en España
-          </h1>
-          <p className="mt-4 text-lg text-slate-600">
-            Encuentra la mejor oferta en Amazon, PcComponentes y MediaMarkt al instante.
-          </p>
+      {/* Hero Section */}
+      <section className="py-16 px-4 max-w-4xl mx-auto text-center">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+          Compara precios de tiendas en España
+        </h1>
+        <p className="text-lg text-slate-600 mb-8">
+          Encuentra la mejor oferta en Amazon, PcComponentes y MediaMarkt al instante.
+        </p>
 
-          <form action="/search" method="GET" className="mt-8 flex w-full gap-2">
-            <input
-              type="text"
-              name="q"
-              placeholder="¿Qué producto buscas? (ej. iPhone 15, PS5...)"
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 focus:border-blue-600 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-            >
-              Buscar
-            </button>
-          </form>
-        </div>
+        {/* Buscador */}
+        <form action="/search" method="GET" className="flex gap-2 max-w-2xl mx-auto">
+          <input 
+            type="text" 
+            name="q"
+            placeholder="¿Qué producto buscas? (ej. iPhone 15, PS5...)" 
+            className="flex-1 px-4 py-3 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+          />
+          <button 
+            type="submit" 
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl transition shadow-sm"
+          >
+            Buscar
+          </button>
+        </form>
       </section>
 
       {/* Categorías */}
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <h2 className="text-2xl font-bold">Explora categorías</h2>
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {categories.map((cat) => (
-            <Link
-              key={cat.name}
-              href={cat.href}
-              className="flex flex-col items-center justify-center rounded-2xl border bg-white p-6 shadow-sm transition hover:shadow-md hover:border-blue-600"
-            >
-              <span className="text-4xl">{cat.icon}</span>
-              <span className="mt-3 font-semibold">{cat.name}</span>
-              <span className="mt-1 text-xs text-slate-500">Ver productos →</span>
-            </Link>
-          ))}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900">Explora categorías</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Link href="/search?category=Móviles" className="p-6 bg-white rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-md transition text-center group">
+            <span className="text-3xl mb-2 block">📱</span>
+            <span className="font-semibold text-slate-800 group-hover:text-blue-600">Móviles</span>
+            <span className="text-xs text-slate-500 block mt-1">Ver productos →</span>
+          </Link>
+          <Link href="/search?category=Portátiles" className="p-6 bg-white rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-md transition text-center group">
+            <span className="text-3xl mb-2 block">💻</span>
+            <span className="font-semibold text-slate-800 group-hover:text-blue-600">Portátiles</span>
+            <span className="text-xs text-slate-500 block mt-1">Ver productos →</span>
+          </Link>
+          <Link href="/search?category=Audio" className="p-6 bg-white rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-md transition text-center group">
+            <span className="text-3xl mb-2 block">🎧</span>
+            <span className="font-semibold text-slate-800 group-hover:text-blue-600">Audio</span>
+            <span className="text-xs text-slate-500 block mt-1">Ver productos →</span>
+          </Link>
+          <Link href="/search?category=Gaming" className="p-6 bg-white rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-md transition text-center group">
+            <span className="text-3xl mb-2 block">🎮</span>
+            <span className="font-semibold text-slate-800 group-hover:text-blue-600">Gaming</span>
+            <span className="text-xs text-slate-500 block mt-1">Ver productos →</span>
+          </Link>
         </div>
       </section>
 
-      {/* Productos Destacados */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <h2 className="text-2xl font-bold">Productos destacados</h2>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.slice(0, 6).map((product) => {
-            const cheapestPrice = Math.min(
-              ...product.offers.map((o) => o.price)
-            );
-            const slug = createSlug(product.name);
+      {/* Productos destacados */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-12">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900">Productos destacados</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {featuredProducts.map((p, index) => {
+            const productId = p.id || p.slug || p.name;
+            const productImage = p.image || p.imageUrl || '';
+            const minPrice = p.offers && p.offers.length > 0 
+              ? Math.min(...p.offers.map((o: any) => o.price)) 
+              : 0;
 
             return (
-              <div
-                key={slug}
-                className="flex flex-col justify-between rounded-2xl border bg-white p-6 shadow-sm transition hover:shadow-md"
+              <Link 
+                key={productId || index} 
+                href={`/product/${encodeURIComponent(productId)}`}
+                className="bg-white rounded-2xl border border-slate-200 p-4 hover:shadow-lg transition flex flex-col justify-between group"
               >
                 <div>
-                  <div className="flex h-48 w-full items-center justify-center rounded-xl bg-white p-4">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="h-full w-full object-contain"
-                    />
+                  <div className="h-40 flex items-center justify-center p-2 mb-4 bg-slate-50 rounded-xl overflow-hidden">
+                    <img src={productImage} alt={p.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition" />
                   </div>
-                  <p className="mt-4 text-xs font-semibold uppercase text-blue-600">
-                    {product.category}
-                  </p>
-                  <h3 className="mt-1 text-lg font-bold leading-snug">{product.name}</h3>
-                  <p className="mt-2 text-sm text-slate-500">
-                    ⭐ {product.rating}/5 · {product.offers.length} ofertas
-                  </p>
+                  <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">{p.category}</span>
+                  <h3 className="font-bold text-slate-900 mt-2 line-clamp-2">{p.name}</h3>
                 </div>
-
-                <div className="mt-6 flex items-center justify-between border-t pt-4">
-                  <div>
-                    <p className="text-xs text-slate-400">Desde</p>
-                    <p className="text-2xl font-bold text-blue-600">
-                      {cheapestPrice.toFixed(2).replace(".", ",")} €
-                    </p>
-                  </div>
-                  <Link
-                    href={`/producto/${slug}`}
-                    className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-                  >
-                    Ver ofertas
-                  </Link>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-xs text-slate-500">{p.offers?.length || 0} ofertas</span>
+                  <span className="font-bold text-slate-900">Desde {minPrice} €</span>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
       </section>
-    </main>
+    </div>
   );
 }
