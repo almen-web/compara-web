@@ -3,12 +3,14 @@ import { products } from '@/data/products';
 
 export const dynamic = 'force-dynamic';
 
-interface Props {
+export default async function SearchPage({
+  searchParams,
+}: {
   searchParams: Promise<{ category?: string; q?: string }>;
-}
-
-export default async function SearchPage({ searchParams }: Props) {
-  const { category, q } = await searchParams;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const category = resolvedSearchParams?.category;
+  const q = resolvedSearchParams?.q;
 
   const filteredProducts = (products as any[]).filter((p) => {
     let matchesCategory = true;
